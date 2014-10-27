@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <hibernate-mapping package="com.hitpoint.surveypark.model">
+ 	<class name="Survey" table="survey">
+ 		<id name="id" column="id" type="integer">
+ 			<generator class="identity"></generator>
+ 		</id>
+ 		<property name="title" column="title" type="string"/>
+ 		<property name="preText" column="preText" type="string"/>
+ 		<property name="nextText" column="nextText" type="string"/>
+ 		<property name="exitText" column="nextText" type="string"/>
+ 		<property name="doneText" column="doneText" type="string"/>
+ 		<property name="createTime" column="createtime" type="timestamp" update="false"></property>
+ 		<many-to-one name="user" class="User" column="userid"/>
+ 	</class>
+ </hibernate-mapping>
