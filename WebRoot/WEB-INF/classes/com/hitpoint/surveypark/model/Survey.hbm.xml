@@ -7,11 +7,11 @@
  		<id name="id" column="id" type="integer">
  			<generator class="identity"></generator>
  		</id>
- 		<property name="title" column="title" type="string"/>
- 		<property name="preText" column="preText" type="string"/>
- 		<property name="nextText" column="nextText" type="string"/>
- 		<property name="exitText" column="nextText" type="string"/>
- 		<property name="doneText" column="doneText" type="string"/>
+ 		<property name="title" column="title" type="string" length="50"/>
+ 		<property name="preText" column="preText" type="string" length="50"/>
+ 		<property name="nextText" column="nextText" type="string" length="50"/>
+ 		<property name="exitText" column="nextText" type="string" length="50"/>
+ 		<property name="doneText" column="doneText" type="string" length="50"/>
  		<property name="createTime" column="createtime" type="timestamp" update="false"></property>
  		<many-to-one name="user" class="User" column="userid"/>
  	</class>

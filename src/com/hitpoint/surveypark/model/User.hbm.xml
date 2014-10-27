@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC 
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
- <hibernate-mapping>
- 	<class name="com.hitpoint.surveypark.model.User" table="users">
+ <hibernate-mapping package="com.hitpoint.surveypark.model">
+ 	<class name="User" table="users">
  		<id name="id" column="id" type="integer">
  			<generator class="identity"></generator>
  		</id>
