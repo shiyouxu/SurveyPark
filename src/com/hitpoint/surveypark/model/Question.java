@@ -20,6 +20,12 @@ public class Question {
 	private String matrixColTitles;
 	//矩阵式下拉选项集
 	private String matrixSelectOptions;
+	public Page getPage() {
+		return page;
+	}
+	public void setPage(Page page) {
+		this.page = page;
+	}
 	//建立从Question到Page之间多对一关联关系
 	private Page page;
 	public Integer getId() {

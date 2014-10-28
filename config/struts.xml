@@ -3,7 +3,16 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<!-- 主题 -->
+	<constant name="struts.ui.theme" value="simple"/>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	
 	<package name="surveyparkPkg" extends="struts-default" namespace="/">
-		
+		<action name="RegAction_*" class="regAction" method="{1}">
+			<result name="regPage">/reg.jsp</result>
+			<result name="input">/reg.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 </struts>

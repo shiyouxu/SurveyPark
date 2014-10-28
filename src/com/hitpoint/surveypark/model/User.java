@@ -1,5 +1,6 @@
 package com.hitpoint.surveypark.model;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class User {

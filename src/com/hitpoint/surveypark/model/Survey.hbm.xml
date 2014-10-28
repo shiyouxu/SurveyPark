@@ -10,7 +10,7 @@
  		<property name="title" column="title" type="string" length="50"/>
  		<property name="preText" column="preText" type="string" length="50"/>
  		<property name="nextText" column="nextText" type="string" length="50"/>
- 		<property name="exitText" column="nextText" type="string" length="50"/>
+ 		<property name="exitText" column="exitText" type="string" length="50"/>
  		<property name="doneText" column="doneText" type="string" length="50"/>
  		<property name="createTime" column="createtime" type="timestamp" update="false"></property>
  		<many-to-one name="user" class="User" column="userid"/>
