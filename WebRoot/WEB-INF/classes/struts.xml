@@ -9,7 +9,24 @@
 	<constant name="struts.devMode" value="true"></constant>
 	
 	<package name="surveyparkPkg" extends="struts-default" namespace="/">
-	
+		<interceptors>
+			<!-- 注册登录拦截器 -->
+			<interceptor name="loginInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.LoginInterveptor"/>
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="surveyparkStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 定义默认栈 -->
+		<default-interceptor-ref name="surveyparkStack"></default-interceptor-ref>
+		
+		<!-- 定义全局结果 -->
+		<global-results>
+			<result name="login">/index.jsp</result>
+		</global-results>
+		
 		<action name="RegAction_*" class="regAction" method="{1}">
 			<result name="regPage">/reg.jsp</result>
 			<result name="input">/reg.jsp</result>
