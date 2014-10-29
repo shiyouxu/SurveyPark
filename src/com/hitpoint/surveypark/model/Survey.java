@@ -1,6 +1,8 @@
 package com.hitpoint.surveypark.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Survey {
 	private Integer id;
@@ -10,22 +12,24 @@ public class Survey {
 	private String exitText = "退出";
 	private String doneText = "完成";
 	private Date createTime = new Date();
+	
 	//建立从survey到user之间多对1的关联关系
 	private User user;
 	
+	private List<Page> pages = new ArrayList<Page>();
+	
+	public List<Page> getPages() {
+		return pages;
+	}
+	public void setPages(List<Page> pages) {
+		this.pages = pages;
+	}
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	//logo路径
-	private String logoPhotoPath;
-	
-	//最大页序
-	private String maxOrderno;
-	//最小页序
-	private String minOrderno;
 	public Integer getId() {
 		return id;
 	}
@@ -68,23 +72,6 @@ public class Survey {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public String getLogoPhotoPath() {
-		return logoPhotoPath;
-	}
-	public void setLogoPhotoPath(String logoPhotoPath) {
-		this.logoPhotoPath = logoPhotoPath;
-	}
-	public String getMaxOrderno() {
-		return maxOrderno;
-	}
-	public void setMaxOrderno(String maxOrderno) {
-		this.maxOrderno = maxOrderno;
-	}
-	public String getMinOrderno() {
-		return minOrderno;
-	}
-	public void setMinOrderno(String minOrderno) {
-		this.minOrderno = minOrderno;
-	}
+	
 	
 }

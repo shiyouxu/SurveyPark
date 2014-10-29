@@ -7,9 +7,11 @@ public class Page {
 	private Integer id;
 	private String title = "未命名";
 	private String description;
+	
 	//建立从Page到Survey之间多对一的关联关系
 	private Survey survey;
 	
+	//建立从Page到Question之间一对多关联关系
 	private Set<Question> questions = new HashSet<Question>();
 	
 	public Survey getSurvey() {

@@ -20,6 +20,7 @@ public class Question {
 	private String matrixColTitles;
 	//矩阵式下拉选项集
 	private String matrixSelectOptions;
+	
 	public Page getPage() {
 		return page;
 	}

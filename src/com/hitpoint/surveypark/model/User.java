@@ -1,6 +1,5 @@
 package com.hitpoint.surveypark.model;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 public class User {
@@ -10,6 +9,7 @@ public class User {
 	private String nickname;
 	//×¢²áÊ±¼ä
 	private Date regDate = new Date();
+	
 	public Date getRegDate() {
 		return regDate;
 	}

@@ -10,8 +10,9 @@
  		<property name="title" column="title" type="string" length="50"/>
  		<property name="description" column="description" type="string" length="50"/>
  		
- 		
+ 		<!-- 映射从Page到Survey之间多对一的关联关系 -->
  		<many-to-one name="survey" class="Survey" column="surveyid"></many-to-one>
+ 		
  		<!-- 建立从page到question之间一对多关联关系 -->
  		<set name="questions" inverse="true" >
  			<key column="surveyid"/>
