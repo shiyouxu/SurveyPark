@@ -25,7 +25,6 @@
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="user" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
-		
 		<property name="maxPoolSize" value="${c3p0.pool.size.max}"></property>
 		<property name="minPoolSize" value="${c3p0.pool.size.min}"></property>
 		<property name="initialPoolSize" value="${c3p0.pool.size.ini}"></property>

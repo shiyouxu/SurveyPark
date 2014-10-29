@@ -25,4 +25,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return ValidateUtil.isValid(list);
 	}
 
+	public User validateLoginInfo(String email, String md5) {
+		String hql = "from User u where u.email = ? and u.password = ?";
+		List<User> list = this.findEntityByHQL(hql, email,md5);
+		return ValidateUtil.isValid(list)?list.get(0):null;
+	}
+	
 }

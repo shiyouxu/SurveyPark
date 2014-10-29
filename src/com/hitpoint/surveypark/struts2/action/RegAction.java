@@ -18,7 +18,6 @@ public class RegAction extends BaseAction<User> {
 	 * 用于反序列化
 	 */
 	private static final long serialVersionUID = 6354516232060456701L;
-	private User model = new User();
 	private String confirmPassword;
 	//注入用户service
 	@Resource
@@ -30,10 +29,6 @@ public class RegAction extends BaseAction<User> {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
-	}
-
-	public User getModel() {
-		return model;
 	}
 	
 	@SkipValidation
@@ -57,7 +52,6 @@ public class RegAction extends BaseAction<User> {
 	 */
 	public void validate(){
 		//1、密码非空
-		String email = model.getEmail();
 		if(!ValidateUtil.isValid(model.getEmail())){
 			addFieldError("email", "email是必填项");
 		}

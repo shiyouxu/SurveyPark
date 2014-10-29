@@ -35,5 +35,4 @@ public class TestUserService {
 		u.setNickname("leo");
 		us.saveEntity(u);
 	}
-
 }
