@@ -40,24 +40,23 @@
   				<td class="tdListHeader">清楚调查</td>
   				<td class="tdListHeader">删除</td>
   			</tr>
-  			<s:iterator value="mySurveys">
-  				<s:set var="sId" value="id">
+  			<s:iterator id="ms" value="mySurveys">
+  				<s:set var="sId" value="id"/>
   				<tr>
-  					<td><s:property value="id"/></td>
-  					<td><s:property value="title"/></td>
-  					<td><s:date name="createTime" format="MM/dd/yy HH:mm"/></td>
+  					<td><s:property value="#ms.id"/></td>
+  					<td><s:property value="#ms.title"/></td>
+  					<td><s:date name="#ms.createTime" format="MM/dd/yy HH:mm"/></td>
   					<td>
   						<!--<s:if test="closed">关闭</s:if>
   						<s:else>开放</s:else>-->
   					</td>
-  					<td><s:a action="SurveyAction_designSurvey?sid=%{#sId}" namespace="/" cssClass="aList">设计</s:a></td>
-   					<td><s:a action="CollectionSurveyAction?sid=%{#sId}" namespace="/" cssClass="aList">收集信息</s:a></td>
-   					<td><s:a action="SurveyAction_analyzeSurvey?sid=%{#sId}" namespace="/" cssClass="aList">分析</s:a></td>
-   					<td><s:a action="SurveyAction_toggleStatus?sid=%{#sId}" namespace="/" cssClass="aList">打开/关闭</s:a></td>
-   					<td><s:a action="SurveyAction_clearAnswers?sid=%{#sId}" namespace="/" cssClass="aList">清除调查</s:a></td>
-   					<td><s:a action="SurveyAction_deleteSurvey?sid=%{#sId}" namespace="/" cssClass="aList">删除</s:a></td>
+  					<td><s:a href="SurveyAction_designSurvey?sid=%{#sId}" namespace="/" cssClass="aList">设计</s:a></td>
+   					<td><s:a href="CollectionSurveyAction?sid=%{#sId}" namespace="/" cssClass="aList">收集信息</s:a></td>
+   					<td><s:a href="SurveyAction_analyzeSurvey?sid=%{#sId}" namespace="/" cssClass="aList">分析</s:a></td>
+   					<td><s:a href="SurveyAction_toggleStatus?sid=%{#sId}" namespace="/" cssClass="aList">打开/关闭</s:a></td>
+   					<td><s:a href="SurveyAction_clearAnswers?sid=%{#sId}" namespace="/" cssClass="aList">清除调查</s:a></td>
+   					<td><s:a href="SurveyAction_deleteSurvey?sid=%{#sId}" namespace="/" cssClass="aList">删除</s:a></td>
   				</tr>
-  				</s:set>
   			</s:iterator>
   		</table>
   	</s:else>

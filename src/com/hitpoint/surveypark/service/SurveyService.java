@@ -19,5 +19,12 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Survey newSurvey(User user);
+	
+	/**
+	 * 按照id查询Survey对象
+	 * @param sid
+	 * @return
+	 */
+	public Survey getSurvey(Integer sid);
 
 }

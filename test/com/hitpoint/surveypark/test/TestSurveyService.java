@@ -3,6 +3,8 @@ package com.hitpoint.surveypark.test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import org.junit.BeforeClass;
@@ -10,6 +12,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 import com.hitpoint.surveypark.service.SurveyService;
 import com.hitpoint.surveypark.service.UserService;
@@ -30,6 +33,18 @@ public class TestSurveyService {
 		User u = new User();
 		u.setId(3);
 		ss.newSurvey(u);
+	}
+	
+	@Test
+	public void TestmySurveys(){
+		//User user = (User) sessionMap.get("user");
+		User user = new User();
+		user.setId(4);
+		List<Survey> mySurveys = new ArrayList<Survey>();
+		mySurveys = ss.findMySurveys(user);
+		for (Survey survey : mySurveys) {
+			System.out.println(survey.getId());
+		}
 	}
 	
 }

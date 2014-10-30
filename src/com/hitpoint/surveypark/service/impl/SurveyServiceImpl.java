@@ -50,4 +50,8 @@ public class SurveyServiceImpl implements SurveyService {
 		return s;
 	}
 
+	public Survey getSurvey(Integer sid) {
+		return surveyDao.getEntity(sid);
+	}
+
 }

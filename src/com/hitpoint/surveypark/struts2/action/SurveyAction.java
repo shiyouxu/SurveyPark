@@ -31,6 +31,17 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	//接收user对象
 	private User user;
+	
+	//接收sid参数
+	private Integer sid;
+	
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
 
 	public List<Survey> getMySurveys() {
 		return mySurveys;
@@ -46,6 +57,7 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	 */
 	public String mySurveys(){
 		//User user = (User) sessionMap.get("user");
+		System.out.println(user.getId());
 		this.mySurveys = surveyService.findMySurveys(user);
 		return "mySurveyListPage";
 	}
@@ -57,6 +69,15 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	public String newSurvey(){
 		//User user = (User) sessionMap.get("user");
 		this.model = surveyService.newSurvey(user);
+		return "designSurveyPage";
+	}
+	
+	/**
+	 * 设计调查
+	 * @return
+	 */
+	public String designSurvey(){
+		this.model = surveyService.getSurvey(sid);
 		return "designSurveyPage";
 	}
 	
