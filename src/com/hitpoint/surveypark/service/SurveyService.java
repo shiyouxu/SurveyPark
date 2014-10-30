@@ -26,5 +26,12 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Survey getSurvey(Integer sid);
+	
+	/**
+	 * 按照id查询Survey对象,同时携带所有的孩子
+	 * @param sid
+	 * @return
+	 */
+	public Survey getSurveyWithChildren(Integer sid);
 
 }

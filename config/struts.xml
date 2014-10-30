@@ -15,7 +15,9 @@
 			<!-- 定义拦截器栈 -->
 			<interceptor-stack name="surveyparkStack">
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
-				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack">
+					<param name="modelDriven.refreshModelBeforeResult">true</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		

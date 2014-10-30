@@ -54,4 +54,14 @@ public class SurveyServiceImpl implements SurveyService {
 		return surveyDao.getEntity(sid);
 	}
 
+	public Survey getSurveyWithChildren(Integer sid) {
+		//Survey s = surveyDao.getEntity(sid);
+		Survey s = this.getSurvey(sid);
+		//强行初始化pages和questions集合
+		for(Page p:s.getPages()){
+			p.getQuestions().size();
+		}
+		return s;
+	}
+
 }
