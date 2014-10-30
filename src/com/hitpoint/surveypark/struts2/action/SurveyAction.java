@@ -54,7 +54,7 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	 * 新建调查
 	 * @return
 	 */
-	public String newSurveys(){
+	public String newSurvey(){
 		//User user = (User) sessionMap.get("user");
 		this.model = surveyService.newSurvey(user);
 		return "designSurveyPage";

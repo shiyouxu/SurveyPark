@@ -22,6 +22,7 @@ public class LoginInterveptor implements Interceptor {
 	public void init() {
 	}
 
+	@SuppressWarnings("rawtypes")
 	public String intercept(ActionInvocation arg0) throws Exception {
 		BaseAction action = (BaseAction) arg0.getAction();
 		if(action instanceof LoginAction || action instanceof RegAction){

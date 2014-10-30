@@ -29,7 +29,6 @@
 		<property name="minPoolSize" value="${c3p0.pool.size.min}"></property>
 		<property name="initialPoolSize" value="${c3p0.pool.size.ini}"></property>
 		<property name="acquireIncrement" value="${c3p0.pool.size.increment}"></property>
-		
 	</bean>
 	
 	<!-- 本地会话工厂bean（spring整合hibernate的核心入口） -->
