@@ -1,11 +1,9 @@
 package com.hitpoint.surveypark.struts2.action;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -79,6 +77,28 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	public String designSurvey(){
 		this.model = surveyService.getSurveyWithChildren(sid);
 		return "designSurveyPage";
+	}
+	
+	/**
+	 * 编辑调查
+	 * @return
+	 */
+	public String editSurvey(){
+		this.model = surveyService.getSurvey(sid);
+		return "editSurveyPage";
+	}
+	
+	/**
+	 * 更新调查
+	 * @return
+	 */
+	public String updateSurvey(){
+		this.sid = model.getId();
+		//保持关联关系
+		model.setUser(user);
+		System.out.println(model.getNextText());
+		surveyService.updateSurvey(model);
+		return "designSurveyAction";
 	}
 	
 	/**

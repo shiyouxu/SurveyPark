@@ -38,7 +38,7 @@
   			</td>
   			<td class="tdSneaderR">
   				增加logo&nbsp;
-  				编辑调查&nbsp;
+  				<s:a href="SurveyAction_editSurvey?sid=%{#sId}">编辑调查</s:a>&nbsp;
   				增加页&nbsp;
   			</td>
   		</tr>

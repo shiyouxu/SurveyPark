@@ -64,4 +64,8 @@ public class SurveyServiceImpl implements SurveyService {
 		return s;
 	}
 
+	public void updateSurvey(Survey model) {
+		surveyDao.updateEntity(model);
+	}
+
 }
