@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hitpoint.surveypark.dao.BaseDao;
 import com.hitpoint.surveypark.model.Page;
+import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 import com.hitpoint.surveypark.service.SurveyService;
@@ -24,6 +25,9 @@ public class SurveyServiceImpl implements SurveyService {
 	
 	@Resource(name="pageDao")
 	private BaseDao<Page> pageDao;
+	
+	@Resource(name="questionDao")
+	private BaseDao<Question> questionDao;
 	
 	/**
 	 * 查询调查集合
@@ -74,6 +78,10 @@ public class SurveyServiceImpl implements SurveyService {
 
 	public Page getPage(Integer pid) {
 		return pageDao.getEntity(pid);
+	}
+
+	public void savaOrUpdateQuestion(Question model) {
+		questionDao.saveOrUpdateEntity(model);
 	}
 
 }

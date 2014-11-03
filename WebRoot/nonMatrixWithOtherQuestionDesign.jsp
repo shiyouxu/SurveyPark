@@ -8,7 +8,7 @@
   </head>
   <body>
     <s:include value="/header.jsp"/>
-	<s:form>
+	<s:form action="QuestionAction_saveOrUpdateQuestion.action" method="post">
 		<s:hidden name="id"/>	
 		<s:hidden name="questionType"/>
   		<s:hidden name="pid"/>
@@ -20,6 +20,10 @@
 			<tr>
 				<td width="35%" style="text-align: right;">问题标题：</td>
 				<td width="*" style="text-align: left;"><s:textfield name="title" cssClass="text"/></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">问题选项：</td>
+				<td style="text-align: left;"><s:textarea name="options" cssClass="text"/></td>
 			</tr>
 			<tr>
 				<td style="text-align: right;">是否含有“其他”选项:</td>

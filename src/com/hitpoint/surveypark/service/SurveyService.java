@@ -3,6 +3,7 @@ package com.hitpoint.surveypark.service;
 import java.util.List;
 
 import com.hitpoint.surveypark.model.Page;
+import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 
@@ -53,5 +54,11 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Page getPage(Integer pid);
+	
+	/**
+	 * 更新或保存问题
+	 * @param model
+	 */
+	public void savaOrUpdateQuestion(Question model);
 
 }

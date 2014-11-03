@@ -9,7 +9,7 @@
   </head>
   <body>
 	<s:include value="/header.jsp"/>
-	<s:form>
+	<s:form action="QuestionAction_saveOrUpdateQuestion.action" method="post">
 		<s:hidden name="id"/>	
 		<s:hidden name="questionType"/>
   		<s:hidden name="pid"/>

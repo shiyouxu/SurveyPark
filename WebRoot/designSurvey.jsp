@@ -50,7 +50,7 @@
 						<td width="*">
 							<table>
 								<!-- 输出页面集合 -->
-								<s:iterator value="pages" id="p">
+								<s:iterator value="pages" var="p">
 								<s:set var="pId" value="#p.id"/>
 								<tr>
 									<td>
@@ -92,25 +92,26 @@
 																	<tr>
 																		<td colspan="2" style="text-align: left;color:black;background-color: white">
 																			<!-- 处理选项输出 -->
-																			<s:set var="qt" value="q.questionType"></s:set>
+																			<s:set var="qt" value="#q.questionType"/>
 																			<!-- 0,1,2,3 -->
 																				<s:if test="#qt lt 4">
 																					<s:iterator value="#q.optionArr">
 																						<input type="<s:property value="#qt<2?'radio':'checkbox'"/>">
+																						<s:property/>
 																						<!-- 是否携带br -->
-																						<s:if test="#qt == 1|| #qt == 3"><br></s:if>
+																						<s:if test="#qt == 1 || #qt == 3"><br></s:if>
 																					</s:iterator>
-																					<s:if test="other">
+																					<s:if test="#q.other">
 																						<!-- 是否带其他 -->
 																						<input type="<s:property value="#qt<2?'radio':'checkbox'"/>">其他
 																						<!-- 其他项样式 -->
-																						<s:if test="q.otherStyle == 1">
+																						<s:if test="#q.otherStyle == 1">
 																							<input type="text">
 																						</s:if>
 																						<s:elseif test="#q.otherStyle == 2">
 																							<!-- 下拉列表 -->
 																							<select>
-																								<s:iterator value="#q.otherSelectOptions">
+																								<s:iterator value="#q.otherSelectOptionArr">
 																									<option><s:property/></option>
 																								</s:iterator>
 																							</select>
@@ -119,35 +120,35 @@
 																				</s:if>
 																				
 																				<!-- 4,5 -->
-																				<s:elseif test="#qt == 4|| #qt == 5">
-																					<!-- 下拉列表 -->
-																					<s:if test="#qt ==4 ">
-																						<select>
-																							<s:iterator value="#q.options">
-																								<option><s:property/></option>
-																							</s:iterator>
-																						</select>
-																					</s:if>
-																					<s:elseif test="#qt == 5">
-																						<input type="text">
-																					</s:elseif>
+																				
+																				<!-- 下拉列表 -->
+																				<s:if test="#qt ==4 ">
+																					<select>
+																						<s:iterator value="#q.optionArr">
+																							<option><s:property/></option>
+																						</s:iterator>
+																					</select>
+																				</s:if>
+																				<s:elseif test="#qt == 5">
+																					<input type="text">
 																				</s:elseif>
+																				
 																				
 																				<!-- 6,7,8：矩阵式问题 -->
 																				<s:elseif test="#qt > 5">
 																					<table>
-																						<!-- 表头 -->
+																						<!-- 列头 -->
 																						<tr>
 																							<td></td>
-																							<s:iterator value="#matrixColTitleArr">
+																							<s:iterator value="#q.matrixColTitleArr">
 																								<td><s:property/></td>
 																							</s:iterator>
 																						</tr>
 																						<!-- 输出n多行 -->
-																						<s:iterator value="matrixRowTitleArr">
+																						<s:iterator value="#q.matrixRowTitleArr">
 																							<tr>
 																								<td><s:property/></td>
-																								<s:iterator value="#matrixColTitleArr">
+																								<s:iterator value="#q.matrixColTitleArr">
 																									<td>
 																										<s:if test="#qt == 6"><input type="radio"></s:if>
 																										<s:if test="#qt == 7"><input type="checkbox"></s:if>
