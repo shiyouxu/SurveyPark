@@ -2,7 +2,9 @@ package com.hitpoint.surveypark.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Survey {
 	private Integer id;
@@ -16,12 +18,12 @@ public class Survey {
 	//建立从survey到user之间多对1的关联关系
 	private User user;
 	
-	private List<Page> pages = new ArrayList<Page>();
+	private Set<Page> pages = new HashSet<Page>();
 	
-	public List<Page> getPages() {
+	public Set<Page> getPages() {
 		return pages;
 	}
-	public void setPages(List<Page> pages) {
+	public void setPages(Set<Page> pages) {
 		this.pages = pages;
 	}
 	public User getUser() {

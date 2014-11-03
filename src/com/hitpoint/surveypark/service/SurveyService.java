@@ -2,6 +2,7 @@ package com.hitpoint.surveypark.service;
 
 import java.util.List;
 
+import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 
@@ -39,5 +40,18 @@ public interface SurveyService {
 	 * @param model
 	 */
 	public void updateSurvey(Survey model);
+	
+	/**
+	 * 保存或更新页面
+	 * @param model
+	 */
+	public void savaOrUpdatePage(Page model);
+	
+	/**
+	 * 按照id查询页面
+	 * @param pid
+	 * @return
+	 */
+	public Page getPage(Integer pid);
 
 }

@@ -39,7 +39,7 @@
   			<td class="tdSneaderR">
   				增加logo&nbsp;
   				<s:a href="SurveyAction_editSurvey?sid=%{#sId}">编辑调查</s:a>&nbsp;
-  				增加页&nbsp;
+  				<s:a href="PageAction_toAddPage?sid=%{#sId}">增加页</s:a>&nbsp;
   			</td>
   		</tr>
 		<tr>
@@ -50,7 +50,7 @@
 						<td width="*">
 							<table>
 								<!-- 输出页面集合 -->
-								<s:iterator value="pages" var="p">
+								<s:iterator value="pages" id="p">
 								<s:set var="pId" value="#p.id"/>
 								<tr>
 									<td>
@@ -59,7 +59,7 @@
 												<!-- 页面标题 -->
 												<td class="tdPNeaderL"><s:property value="#p.title"/></td>
 												<td class="tdPheaderR">
-													编辑页标题&nbsp;
+													<s:a href="PageAction_editPage?sid=%{#sId}&pid=%{#pId}">编辑页标题</s:a>&nbsp;
 													移动/复制页&nbsp;
 													增加问题&nbsp;
 													删除页&nbsp;

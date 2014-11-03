@@ -68,4 +68,12 @@ public class SurveyServiceImpl implements SurveyService {
 		surveyDao.updateEntity(model);
 	}
 
+	public void savaOrUpdatePage(Page model) {
+		pageDao.saveOrUpdateEntity(model);
+	}
+
+	public Page getPage(Integer pid) {
+		return pageDao.getEntity(pid);
+	}
+
 }

@@ -15,7 +15,7 @@
  		
  		<!-- 建立从page到question之间一对多关联关系 -->
  		<set name="questions" inverse="true" >
- 			<key column="surveyid"/>
+ 			<key column="pageid"/>
  			<one-to-many class="Question"/>
  		</set>
  	</class>
