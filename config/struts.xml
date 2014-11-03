@@ -56,5 +56,20 @@
 			<result name="addPagePage">/editPage.jsp</result>
 			<result name="editPagePage">/editPage.jsp</result>
 		</action>
+		
+		<action name="QuestionAction_*" class="questionAction" method="{1}">
+			<result name="selectQuestionTypePage">/selectQuestionType.jsp</result>
+			<!-- 根据题型动态返回设计问题页面 -->
+			<result name="0">/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="1">/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="2">/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="3">/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="4">/nonMatrixSelectQuestionDesign.jsp</result>
+			<result name="5">/nonMatrixTextQuestionDesign.jsp</result>
+			<result name="6">/matrixNormalQuestionDesign.jsp</result>
+			<result name="7">/matrixNormalQuestionDesign.jsp</result>
+			<result name="8">/matrixSelectQuestionDesign.jsp</result>
+		</action>
+		
 	</package>
 </struts>

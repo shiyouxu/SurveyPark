@@ -61,7 +61,7 @@
 												<td class="tdPheaderR">
 													<s:a href="PageAction_editPage?sid=%{#sId}&pid=%{#pId}">编辑页标题</s:a>&nbsp;
 													移动/复制页&nbsp;
-													增加问题&nbsp;
+													<s:a href="QuestionAction_toSelectQuestionType?sid=%{#sId}&pid=%{#pId}">增加问题</s:a>&nbsp;
 													删除页&nbsp;
 												</td>
 											</tr>
