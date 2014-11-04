@@ -47,4 +47,10 @@ public class TestSurveyService {
 		}
 	}
 	
+	//ÇÐ»»×´Ì¬
+	@Test
+	public void toggleStatus(){
+		
+	}
+	
 }

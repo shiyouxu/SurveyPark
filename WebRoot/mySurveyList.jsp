@@ -47,8 +47,8 @@
   					<td><s:property value="#ms.title"/></td>
   					<td><s:date name="#ms.createTime" format="MM/dd/yy HH:mm"/></td>
   					<td>
-  						<!--<s:if test="closed">关闭</s:if>
-  						<s:else>开放</s:else>-->
+  						<s:if test="closed">关闭</s:if>
+  						<s:else>开放</s:else>
   					</td>
   					<td><s:a href="SurveyAction_designSurvey?sid=%{#sId}" namespace="/" cssClass="aList">设计</s:a></td>
    					<td><s:a href="CollectionSurveyAction?sid=%{#sId}" namespace="/" cssClass="aList">收集信息</s:a></td>

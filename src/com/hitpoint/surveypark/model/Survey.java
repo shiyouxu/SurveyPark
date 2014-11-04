@@ -1,9 +1,7 @@
 package com.hitpoint.surveypark.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Survey {
@@ -14,9 +12,17 @@ public class Survey {
 	private String exitText = "退出";
 	private String doneText = "完成";
 	private Date createTime = new Date();
+	//是否关闭调查
+	private boolean closed;
 	
-	//建立从survey到user之间多对1的关联关系
+	public boolean isClosed() {
+		return closed;
+	}
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
 	private User user;
+	//建立从survey到user之间多对1的关联关系
 	
 	private Set<Page> pages = new HashSet<Page>();
 	

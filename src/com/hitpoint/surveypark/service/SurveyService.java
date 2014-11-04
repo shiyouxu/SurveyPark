@@ -84,5 +84,17 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Question getQuestion(Integer qid);
+	
+	/**
+	 * 清楚调查
+	 * @param sid
+	 */
+	public void clearAnswers(Integer sid);
+	
+	/**
+	 * 切换调查状态
+	 * @param sid
+	 */
+	public void toggleStatus(Integer sid);
 
 }

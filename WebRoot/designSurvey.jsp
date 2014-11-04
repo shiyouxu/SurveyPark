@@ -96,7 +96,7 @@
 																			<!-- 0,1,2,3 -->
 																				<s:if test="#qt lt 4">
 																					<s:iterator value="#q.optionArr">
-																						<input type="<s:property value="#qt<2?'radio':'checkbox'"/>">
+																						<input name="<s:property value="#qt"/>" type="<s:property value="#qt<2?'radio':'checkbox'"/>">
 																						<s:property/>
 																						<!-- 是否携带br -->
 																						<s:if test="#qt == 1 || #qt == 3"><br></s:if>

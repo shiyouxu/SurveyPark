@@ -133,4 +133,17 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 		return "findMySurveysAction";
 	}
 	
+	/**
+	 * 清除调查的答案
+	 * @return
+	 */
+	public String clearAnswers(){
+		surveyService.clearAnswers(sid);
+		return "findMySurveysAction";
+	}
+	
+	public String toggleStatus(){
+		surveyService.toggleStatus(sid);
+		return "findMySurveysAction";
+	}
 }
