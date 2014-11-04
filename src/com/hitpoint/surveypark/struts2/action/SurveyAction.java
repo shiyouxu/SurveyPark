@@ -16,6 +16,8 @@ import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import sun.rmi.log.LogOutputStream;
+
 import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
@@ -161,18 +163,19 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	
 	//上传文件
 	private File logoPhoto;
+	public File getLogoPhoto() {
+		return logoPhoto;
+	}
+
+	public void setLogoPhoto(File logoPhoto) {
+		this.logoPhoto = logoPhoto;
+	}
+
 	//文件名称
 	private String logoPhotoFileName;
 	//接收ServletContext对象
 	private ServletContext sc;
 	
-	public File getLogoFile() {
-		return logoPhoto;
-	}
-
-	public void setLogoFile(File logoFile) {
-		this.logoPhoto = logoFile;
-	}
 
 	public String getLogoPhotoFileName() {
 		return logoPhotoFileName;
@@ -184,9 +187,8 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 
 	/**
 	 * 实现logo上传
-	 * @throws FileNotFoundException 
 	 */
-	public String doAddLogo() throws FileNotFoundException{
+	public String doAddLogo(){
 		System.out.println(sid+"---------------------------");
 		if(ValidateUtil.isValid(logoPhotoFileName)){
 			//1、实现上传

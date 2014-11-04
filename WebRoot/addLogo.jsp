@@ -17,13 +17,13 @@
 				<table>
 					<tr>
 						<td>
-							<s:form action="SurveyAction_doAddLogo" name="SurveyAction_doAddLogo" method="post" enctype="multipart/form-data">
+							<s:form action="SurveyAction_doAddLogo" method="post" enctype="multipart/form-data">
 							<s:hidden name="sid"/>
 							<table>
 								<tr>
 									<td class="tdFormLabel">选择Logo：</td>
 									<td class="tdFormControl">
-										<s:file name="logoPhoto" />
+										<s:file name="logoPhoto"/>
 										<%-- <s:fielderror fieldName="logoPhoto"/> --%>
 									</td>
 								</tr>							
