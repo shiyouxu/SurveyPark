@@ -24,7 +24,7 @@
 									<td class="tdFormLabel">选择Logo：</td>
 									<td class="tdFormControl">
 										<s:file name="logoPhoto"/>
-										<%-- <s:fielderror fieldName="logoPhoto"/> --%>
+										<!-- <s:fielderror fieldName="logoPhoto"/> -->
 									</td>
 								</tr>							
 								<tr>

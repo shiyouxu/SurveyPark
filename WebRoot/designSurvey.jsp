@@ -30,9 +30,9 @@
   		</tr>
   		<tr>
   			<td class="tdSHeaderL">
-  				<%-- <s:if test="logoPhotoExists()">
-  					<img src='%{logoPhotoPath}' width="50px" height="25px">
-  				</s:if> --%>
+  				<s:if test="photoExist()">
+  					<img src="<s:url value='%{logoPhotoPath}'/>" width="50px" height="25px">
+  				</s:if> 
 			  	<!-- 调查标题 -->
 				<s:property value="title"/>
   			</td>

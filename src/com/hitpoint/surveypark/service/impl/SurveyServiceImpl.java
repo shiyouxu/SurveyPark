@@ -147,6 +147,15 @@ public class SurveyServiceImpl implements SurveyService {
 		String hql = "update Survey s set s.logoPhotoPath = ? where s.id = ?";
 		surveyDao.batchEntityByHQL(hql, path,sid);
 	}
+
+	public List<Survey> getSurveyWithPages(User user) {
+		String hql = "from Survey s where s.user.id = ?";
+		List<Survey> list = surveyDao.findEntityByHQL(hql,user.getId());
+		for (Survey s : list) {
+			s.getPages().size();
+		}
+		return list;
+	}
 }
 
 

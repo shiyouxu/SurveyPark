@@ -47,6 +47,17 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	//接收sid参数
 	private Integer sid;
 	
+	//动态错误页指定
+	private String inputPage;
+	
+	public String getInputPage() {
+		return inputPage;
+	}
+
+	public void setInputPage(String inputPage) {
+		this.inputPage = inputPage;
+	}
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -118,6 +129,10 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		return "designSurveyAction";
 	}
 	
+	public void prepareUpdateSurvey(){
+		inputPage = "/editSurvey.jsp";
+	}
+		
 	/**
 	 * 该方法只在designSurvey之前运行
 	 */
@@ -185,11 +200,14 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		this.logoPhotoFileName = logoPhotoFileName;
 	}
 
+	public void prepareDoAddLogo(){
+		inputPage = "/addLogo.jsp";
+	}
+		
 	/**
 	 * 实现logo上传
 	 */
 	public String doAddLogo(){
-		System.out.println(sid+"---------------------------");
 		if(ValidateUtil.isValid(logoPhotoFileName)){
 			//1、实现上传
 			String dir = sc.getRealPath("/upload");
@@ -211,4 +229,17 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		this.sc = arg0;
 	}
 	
+	/**
+	 * logo图片是否存在
+	 */
+	public boolean photoExist(){
+		String path = model.getLogoPhotoPath();
+		if(ValidateUtil.isValid(path)){
+			String absPath = sc.getRealPath(path);
+			File file = new File(absPath);
+			return file.exists();
+		}
+		
+		return false;
+	}
 }

@@ -7,7 +7,15 @@ public class Page {
 	private Integer id;
 	private String title = "未命名";
 	private String description;
+	//页序
+	private float orderno;
 	
+	public float getOrderno() {
+		return orderno;
+	}
+	public void setOrderno(float orderno) {
+		this.orderno = orderno;
+	}
 	//建立从Page到Survey之间多对一的关联关系
 	private Survey survey;
 	
