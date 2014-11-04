@@ -32,7 +32,7 @@
 			<tr>
 				<td style="text-align: right;">“其他”项类型：</td>
 				<td width="*" style="text-align: left;">
-					<s:radio list="#{0:'无',1:'文本框',2:'下拉列表框'}" listKey="key" listValue="value" name="otherSelectOptions"></s:radio>
+					<s:radio list="#{0:'无',1:'文本框',2:'下拉列表框'}" listKey="key" listValue="value" name="otherStyle"></s:radio>
 				</td>
 			</tr>
 			<tr>

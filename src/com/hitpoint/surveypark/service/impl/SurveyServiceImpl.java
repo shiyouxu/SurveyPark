@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.hitpoint.surveypark.dao.BaseDao;
+import com.hitpoint.surveypark.model.Answer;
 import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
@@ -29,6 +30,8 @@ public class SurveyServiceImpl implements SurveyService {
 	@Resource(name="questionDao")
 	private BaseDao<Question> questionDao;
 	
+	@Resource(name="answerDao")
+	private BaseDao<Answer> answerDao;
 	/**
 	 * 查询调查集合
 	 */
@@ -84,4 +87,58 @@ public class SurveyServiceImpl implements SurveyService {
 		questionDao.saveOrUpdateEntity(model);
 	}
 
+	public void deleteQuestion(Integer qid) {
+		//1、删除answers
+		String hql = "delete from Answer a where a.questionid = ?";
+		answerDao.batchEntityByHQL(hql, qid);
+		//2、delete question
+		hql = "delete from Question q where q.id = ?";
+		questionDao.batchEntityByHQL(hql, qid);
+	}
+
+	public void deletePage(Integer pid) {
+		//delete answer
+		String hql = "delete from Answer a where a.questionid in (select q.id from Question q where q.page.id = ?)";
+		answerDao.batchEntityByHQL(hql, pid);
+		//delete questions
+		hql = "delete from Question q where q.page.id = ?";
+		answerDao.batchEntityByHQL(hql, pid);
+		//delete pages
+		hql = "delete from Page p where p.id = ?";
+		answerDao.batchEntityByHQL(hql, pid);
+	}
+
+	public void deleteSurvey(Integer sid) {
+		//delete answer 
+		String hql = "delete from Answer a where a.surveyid = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete question
+		//hibernate在写操作中，不允许两级以上的连接
+		//hql = "delete from Question q where q.page.survey.id = ?";
+		hql = "delete from Question q where q.page.id in(select p.id from Page p where p.survey.id = ?)";
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete pages
+		hql = "delete from Page p where p.survey.id = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete survey
+		hql = "delete from Survey s where s.id = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+	}
+	
+	/**
+	 * 编辑问题
+	 */
+	public Question getQuestion(Integer qid) {
+		return questionDao.getEntity(qid);
+	}
 }
+
+
+
+
+
+
+
+
+
+

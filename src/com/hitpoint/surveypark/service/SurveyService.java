@@ -60,5 +60,29 @@ public interface SurveyService {
 	 * @param model
 	 */
 	public void savaOrUpdateQuestion(Question model);
+	
+	/**
+	 * 删除问题，同时删除答案
+	 * @param qid
+	 */
+	public void deleteQuestion(Integer qid);
+
+	/**
+	 * 删除页面，同时删除问题和答案
+	 */
+	public void deletePage(Integer pid);
+	
+	/**
+	 * 删除调查，同时删除页面、问题和答案
+	 * @param sid
+	 */
+	public void deleteSurvey(Integer sid);
+	
+	/**
+	 * 编辑问题
+	 * @param qid
+	 * @return
+	 */
+	public Question getQuestion(Integer qid);
 
 }

@@ -50,6 +50,10 @@
 			<result name="mySurveyListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
 			<result name="editSurveyPage">/editSurvey.jsp</result>
+			<result name="findMySurveysAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">SurveyAction_mySurveys</param>
+			</result>
 		</action>
 		
 		<action name="PageAction_*" class="pageAction" method="{1}">

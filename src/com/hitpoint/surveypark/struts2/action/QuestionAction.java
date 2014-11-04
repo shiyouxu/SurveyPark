@@ -19,6 +19,16 @@ public class QuestionAction extends BaseAction<Question> {
 	
 	private Integer sid;
 	
+	private Integer qid;
+	
+	public Integer getQid() {
+		return qid;
+	}
+
+	public void setQid(Integer qid) {
+		this.qid = qid;
+	}
+
 	@Resource
 	private SurveyService surveyService;
 	
@@ -66,4 +76,18 @@ public class QuestionAction extends BaseAction<Question> {
 		return "designSurveyAction";
 	}
 	
+	/**
+	 * …æ≥˝Œ Ã‚
+	 * @return
+	 */
+	public String deleteQuestion(){
+		surveyService.deleteQuestion(qid);
+		return "designSurveyAction";
+	}
+	
+	public String editQuestion(){
+		
+		this.model = surveyService.getQuestion(qid);
+		return ""+model.getQuestionType();
+	}
 }

@@ -123,4 +123,14 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	/**
+	 * É¾³ýµ÷²é
+	 * @return
+	 */
+	public String deleteSurvey(){
+		surveyService.deleteSurvey(sid);
+		return "findMySurveysAction";
+	}
+	
 }
