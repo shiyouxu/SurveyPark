@@ -37,7 +37,7 @@
 				<s:property value="title"/>
   			</td>
   			<td class="tdSneaderR">
-  				增加logo&nbsp;
+  				<s:a href="SurveyAction_toAddLogoPage?sid=%{#sId}">增加logo</s:a>&nbsp;
   				<s:a href="SurveyAction_editSurvey?sid=%{#sId}">编辑调查</s:a>&nbsp;
   				<s:a href="PageAction_toAddPage?sid=%{#sId}">增加页</s:a>&nbsp;
   			</td>

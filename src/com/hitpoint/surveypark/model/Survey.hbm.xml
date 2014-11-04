@@ -14,6 +14,7 @@
  		<property name="doneText" column="doneText" type="string" length="50"/>
  		<property name="createTime" column="createtime" type="timestamp" update="false"></property>
  		<property name="closed" column="closed" type="boolean" update="false"/>
+ 		<property name="logoPhotoPath" column="logophotopath" type="string" length="200"/>
  		<many-to-one name="user" class="User" column="userid"/>
  		<set name="pages" inverse="true" order-by="id">
  			<key column="surveyid"></key>

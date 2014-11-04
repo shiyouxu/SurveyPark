@@ -9,11 +9,13 @@
 	<constant name="struts.devMode" value="true"></constant>
 	
 	<package name="surveyparkPkg" extends="struts-default" namespace="/">
+		
 		<interceptors>
 			<!-- 注册登录拦截器 -->
 			<interceptor name="loginInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.LoginInterveptor"/>
 			<!-- 定义拦截器栈 -->
 			<interceptor-stack name="surveyparkStack">
+				<interceptor-ref name="fileUpload" ></interceptor-ref>
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack">
 					<param name="modelDriven.refreshModelBeforeResult">true</param>
@@ -49,6 +51,7 @@
 		<action name="SurveyAction_*" class="surveyAction" method="{1}">
 			<result name="mySurveyListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
+			<result name="addLogoPage">/addLogo.jsp</result>
 			<result name="editSurveyPage">/editSurvey.jsp</result>
 			<result name="findMySurveysAction" type="redirectAction">
 				<param name="namespace">/</param>

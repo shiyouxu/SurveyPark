@@ -96,5 +96,12 @@ public interface SurveyService {
 	 * @param sid
 	 */
 	public void toggleStatus(Integer sid);
+	
+	/**
+	 * ¸üÐÂlogoPhotoÂ·¾¶
+	 * @param sid
+	 * @param string
+	 */
+	public void updateLogoPhotoPath(Integer sid, String string);
 
 }

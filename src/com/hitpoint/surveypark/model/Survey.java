@@ -14,7 +14,14 @@ public class Survey {
 	private Date createTime = new Date();
 	//是否关闭调查
 	private boolean closed;
+	private String logoPhotoPath;
 	
+	public String getLogoPhotoPath() {
+		return logoPhotoPath;
+	}
+	public void setLogoPhotoPath(String logoPhotoPath) {
+		this.logoPhotoPath = logoPhotoPath;
+	}
 	public boolean isClosed() {
 		return closed;
 	}

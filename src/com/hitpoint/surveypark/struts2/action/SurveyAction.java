@@ -1,10 +1,18 @@
 package com.hitpoint.surveypark.struts2.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 
+import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -14,9 +22,10 @@ import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 import com.hitpoint.surveypark.service.SurveyService;
 import com.hitpoint.surveypark.struts2.UserAware;
+import com.hitpoint.surveypark.util.ValidateUtil;
 @Controller
 @Scope("prototype")
-public class SurveyAction extends BaseAction<Survey> implements UserAware {
+public class SurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware {
 
 	private static final long serialVersionUID = -2508803636993650070L;
 	
@@ -54,18 +63,16 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 
 	/**
 	 * 查询我的调查列表
-	 * @return
 	 */
 	public String mySurveys(){
 		//User user = (User) sessionMap.get("user");
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 		this.mySurveys = surveyService.findMySurveys(user);
 		return "mySurveyListPage";
 	}
 	
 	/**
 	 * 新建调查
-	 * @return
 	 */
 	public String newSurvey(){
 		//User user = (User) sessionMap.get("user");
@@ -75,7 +82,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	/**
 	 * 设计调查
-	 * @return
 	 */
 	public String designSurvey(){
 		this.model = surveyService.getSurveyWithChildren(sid);
@@ -92,7 +98,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	/**
 	 * 编辑调查
-	 * @return
 	 */
 	public String editSurvey(){
 		this.model = surveyService.getSurvey(sid);
@@ -101,7 +106,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	/**
 	 * 更新调查
-	 * @return
 	 */
 	public String updateSurvey(){
 		this.sid = model.getId();
@@ -126,7 +130,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	/**
 	 * 删除调查
-	 * @return
 	 */
 	public String deleteSurvey(){
 		surveyService.deleteSurvey(sid);
@@ -135,15 +138,75 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 	
 	/**
 	 * 清除调查的答案
-	 * @return
 	 */
 	public String clearAnswers(){
 		surveyService.clearAnswers(sid);
 		return "findMySurveysAction";
 	}
 	
+	/**
+	 * 切换状态
+	 */
 	public String toggleStatus(){
 		surveyService.toggleStatus(sid);
 		return "findMySurveysAction";
 	}
+	
+	/**
+	 * 到达增加logo的页面
+	 */
+	public String toAddLogoPage(){
+		return "addLogoPage";
+	}
+	
+	//上传文件
+	private File logoPhoto;
+	//文件名称
+	private String logoPhotoFileName;
+	//接收ServletContext对象
+	private ServletContext sc;
+	
+	public File getLogoFile() {
+		return logoPhoto;
+	}
+
+	public void setLogoFile(File logoFile) {
+		this.logoPhoto = logoFile;
+	}
+
+	public String getLogoPhotoFileName() {
+		return logoPhotoFileName;
+	}
+
+	public void setLogoPhotoFileName(String logoPhotoFileName) {
+		this.logoPhotoFileName = logoPhotoFileName;
+	}
+
+	/**
+	 * 实现logo上传
+	 * @throws FileNotFoundException 
+	 */
+	public String doAddLogo() throws FileNotFoundException{
+		System.out.println(sid+"---------------------------");
+		if(ValidateUtil.isValid(logoPhotoFileName)){
+			//1、实现上传
+			String dir = sc.getRealPath("/upload");
+			//upload文件夹真实路径
+			String ext = logoPhotoFileName.substring(logoPhotoFileName.lastIndexOf("."));
+			//纳秒时间作为文件名
+			long l = System.nanoTime();
+			File newFile = new File(dir,l+ext);
+			//文件另存为
+			logoPhoto.renameTo(newFile);
+			//2、更新路径
+			surveyService.updateLogoPhotoPath(sid,"/upload/"+l+ext);
+		}
+		return "designSurveyAction";
+	}
+	
+	//注入ServletContext对象
+	public void setServletContext(ServletContext arg0) {
+		this.sc = arg0;
+	}
+	
 }
