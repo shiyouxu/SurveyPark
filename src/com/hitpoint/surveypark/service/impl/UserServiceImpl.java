@@ -31,4 +31,5 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return ValidateUtil.isValid(list)?list.get(0):null;
 	}
 	
+	
 }

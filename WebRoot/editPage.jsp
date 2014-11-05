@@ -22,7 +22,7 @@
 							<s:form action="PageAction_saveOrUpdatePage" namespace="/" method="post">
 							<s:hidden name="id"/>
 							<s:hidden name="sid"/>
-							<s:hidden name="orderno"/>
+							<%-- <s:hidden name="orderno"/> --%>
 								<table>
 									<tr>
 										<td class="tdFormLabel">页面标题:</td>

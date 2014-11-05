@@ -110,5 +110,10 @@ public interface SurveyService {
 	 * @return
 	 */
 	public List<Survey> getSurveyWithPages(User user);
+	
+	/**
+	 * 进行页面移动/复制
+	 */
+	public void moveOrCopyPage(Integer srcPid, Integer targPid, int pos);
 
 }

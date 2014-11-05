@@ -1,9 +1,11 @@
 package com.hitpoint.surveypark.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Page {
+public class Page implements Serializable{
+	private static final long serialVersionUID = 9133200376896999468L;
 	private Integer id;
 	private String title = "未命名";
 	private String description;
@@ -17,7 +19,8 @@ public class Page {
 		this.orderno = orderno;
 	}
 	//建立从Page到Survey之间多对一的关联关系
-	private Survey survey;
+	//transient：临时的；深度复制时不会复制该对象
+	private transient Survey survey;
 	
 	//建立从Page到Question之间一对多关联关系
 	private Set<Question> questions = new HashSet<Question>();
@@ -39,6 +42,9 @@ public class Page {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+		if(id!=null){
+			this.orderno = id;
+		}
 	}
 	public String getTitle() {
 		return title;

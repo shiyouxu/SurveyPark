@@ -1,8 +1,10 @@
 package com.hitpoint.surveypark.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = -3023429159818521512L;
 	private Integer id;
 	private String email;
 	private String password;

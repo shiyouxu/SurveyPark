@@ -60,7 +60,7 @@
 												<td class="tdPNeaderL"><s:property value="#p.title"/></td>
 												<td class="tdPheaderR">
 													<s:a href="PageAction_editPage?sid=%{#sId}&pid=%{#pId}">编辑页标题</s:a>&nbsp;
-													移动/复制页&nbsp;
+													<s:a href="MoveOrCopyPageAction_toSelectTargetPage?srcPid=%{#pId}">移动/复制页</s:a>&nbsp;
 													<s:a href="QuestionAction_toSelectQuestionType?sid=%{#sId}&pid=%{#pId}">增加问题</s:a>&nbsp;
 													<s:a href="PageAction_deletePage?sid=%{#sId}&pid=%{#pId}">删除页</s:a>&nbsp;
 												</td>

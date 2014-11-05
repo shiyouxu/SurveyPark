@@ -16,7 +16,7 @@
  		<property name="closed" column="closed" type="boolean" update="false"/>
  		<property name="logoPhotoPath" column="logophotopath" type="string" length="200"/>
  		<many-to-one name="user" class="User" column="userid"/>
- 		<set name="pages" inverse="true" order-by="id">
+ 		<set name="pages" inverse="true" order-by="orderno">
  			<key column="surveyid"></key>
  			<one-to-many class="Page"/>
  		</set>

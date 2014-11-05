@@ -13,6 +13,7 @@ import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 import com.hitpoint.surveypark.service.SurveyService;
+import com.hitpoint.surveypark.util.DataUtil;
 /**
  * SurveyService实现
  * @author leo.zhang
@@ -155,6 +156,100 @@ public class SurveyServiceImpl implements SurveyService {
 			s.getPages().size();
 		}
 		return list;
+	}
+
+	public void moveOrCopyPage(Integer srcPid, Integer targPid, int pos) {
+		Page srcPage = this.getPage(srcPid);
+		Survey srcSurvey = srcPage.getSurvey();
+		Page targPage = this.getPage(targPid);
+		Survey targSurvey = targPage.getSurvey();
+		//判断移动还是复制，相同则移动
+		if(srcSurvey.getId().equals(targSurvey.getId())){
+			changeOrderno(srcPage,targPage,pos);
+		}
+		//复制
+		else{
+			//把原页面的question集合强行初始化，否则无法复制不到question集合
+			srcPage.getQuestions().size();
+			//深度复制
+			Page copyPage = (Page) DataUtil.deepluCopy(srcPage);
+			//设置页面和目标调查关联
+			copyPage.setSurvey(targSurvey);
+			//保存页面
+			pageDao.saveEntity(copyPage);
+			for(Question q :copyPage.getQuestions()){
+				questionDao.saveEntity(q);
+			}
+			changeOrderno(copyPage,targPage,pos);
+		}
+	}
+
+	/**
+	 * 设置页序
+	 */
+	public void changeOrderno(Page srcPage, Page targPage, int pos) {
+		//之前
+		if(pos == 0){
+			//判断目标页是否是首页
+			if(isFirstPage(targPage)){
+				srcPage.setOrderno(targPage.getOrderno() - 0.01f);
+			}
+			else{
+				//取得目标页的前一页
+				Page prePage = getPrePage(targPage);
+				srcPage.setOrderno((targPage.getOrderno()+prePage.getOrderno()) /2.0f);
+			}
+		}
+		//之后
+		else{
+			//判断目标页是否是尾页
+			if(isLastPage(targPage)){
+				srcPage.setOrderno(targPage.getOrderno() + 0.01f);
+			}
+			else{
+				//取得目标页的后一页
+				Page nextPage = getNextPage(targPage);
+				srcPage.setOrderno((targPage.getOrderno()+nextPage.getOrderno()) /2.0f);
+			}
+		}
+	}
+	
+	/**
+	 * 查询指定页面的下一页
+	 */
+	private Page getNextPage(Page targPage) {
+		String hql = "from Page p where p.survey.id = ? and p.orderno > ? order by p.orderno asc";
+		List<Page> list = pageDao.findEntityByHQL(hql, targPage.getSurvey().getId(),targPage.getOrderno());
+		return list.get(0);
+	}
+	
+	/**
+	 * 判断指定页面是否是指定调查尾页
+	 */
+	private boolean isLastPage(Page targPage) {
+		String hql = "select count(*) from Page p where p.survey.id = ? and p.orderno > ?";
+		Long count = (Long)pageDao.uniqueResult(hql, targPage.getSurvey().getId(),targPage.getOrderno());
+		//count = 0 即是尾页
+		return count == 0;
+	}
+	
+	/**
+	 * 判断指定页面是否是指定调查首页
+	 */
+	private boolean isFirstPage(Page targPage) {
+		String hql = "select count(*) from Page p where p.survey.id = ? and p.orderno < ?";
+		Long count = (Long)pageDao.uniqueResult(hql, targPage.getSurvey().getId(),targPage.getOrderno());
+		//count = 0 即是首页
+		return count == 0;
+	}
+
+	/**
+	 * 查询指定页面的上一页
+	 */
+	private Page getPrePage(Page targPage) {
+		String hql = "from Page p where p.survey.id = ? and p.orderno < ? order by p.orderno desc";
+		List<Page> list = pageDao.findEntityByHQL(hql, targPage.getSurvey().getId(),targPage.getOrderno());
+		return list.get(0);
 	}
 }
 

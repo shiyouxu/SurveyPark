@@ -10,8 +10,8 @@
  		<property name="title" column="title" type="string" length="50"/>
  		<property name="description" column="description" type="string" length="50"/>
  		<!-- 显式指定字段类型 -->
- 		<property name="orderno" column="orderno" type="float">
- 			<column name="orderno" sql-type="decimal(10,5)"></column>
+ 		<property name="orderno" type="float">
+ 			<column name="orderno" sql-type="decimal(10,6)"/>
  		</property>
  		
  		<!-- 映射从Page到Survey之间多对一的关联关系 -->

@@ -1,9 +1,11 @@
 package com.hitpoint.surveypark.model;
 
-import com.hitpoint.surveypark.util.StringUtil;
-import com.hitpoint.surveypark.util.ValidateUtil;
+import java.io.Serializable;
 
-public class Question {
+import com.hitpoint.surveypark.util.StringUtil;
+
+public class Question implements Serializable {
+	private static final long serialVersionUID = 2008237709169686867L;
 	public static final String RN = "\r\n";
 	private Integer id;
 	//Ã‚–Õ0~8

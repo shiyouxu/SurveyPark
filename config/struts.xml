@@ -68,6 +68,7 @@
 		<action name="PageAction_*" class="pageAction" method="{1}">
 			<result name="addPagePage">/editPage.jsp</result>
 			<result name="editPagePage">/editPage.jsp</result>
+			<result name="input">/editPage.jsp</result>
 		</action>
 		
 		<action name="QuestionAction_*" class="questionAction" method="{1}">
@@ -84,7 +85,7 @@
 			<result name="8">/matrixSelectQuestionDesign.jsp</result>
 		</action>
 		
-		<action name="MoveOrCopyPageAction_*" class="moveOrCopyPageAction" method="">
+		<action name="MoveOrCopyPageAction_*" class="moveOrCopyPageAction" method="{1}">
 			<result name="moveOrCopyPageListPage">/moveOrCopyPageList.jsp</result>
 		</action>
 	</package>

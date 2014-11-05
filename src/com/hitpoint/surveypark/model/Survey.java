@@ -1,10 +1,12 @@
 package com.hitpoint.surveypark.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Survey {
+public class Survey implements Serializable{
+	private static final long serialVersionUID = -9196454747890644210L;
 	private Integer id;
 	private String title = "未命名";
 	private String preText = "上一步";
