@@ -251,6 +251,11 @@ public class SurveyServiceImpl implements SurveyService {
 		List<Page> list = pageDao.findEntityByHQL(hql, targPage.getSurvey().getId(),targPage.getOrderno());
 		return list.get(0);
 	}
+
+	public List<Survey> findAllAvailableSurveys() {
+		String hql = "from Survey s where s.closed = ?";
+		return surveyDao.findEntityByHQL(hql, false);
+	}
 }
 
 

@@ -115,5 +115,10 @@ public interface SurveyService {
 	 * 进行页面移动/复制
 	 */
 	public void moveOrCopyPage(Integer srcPid, Integer targPid, int pos);
+	
+	/**
+	 * 查询所有可用调查
+	 */
+	public List<Survey> findAllAvailableSurveys();
 
 }

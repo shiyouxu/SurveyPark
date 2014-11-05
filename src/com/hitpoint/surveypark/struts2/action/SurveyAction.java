@@ -1,13 +1,7 @@
 package com.hitpoint.surveypark.struts2.action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -16,10 +10,6 @@ import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import sun.rmi.log.LogOutputStream;
-
-import com.hitpoint.surveypark.model.Page;
-import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.model.User;
 import com.hitpoint.surveypark.service.SurveyService;
@@ -98,14 +88,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	 */
 	public String designSurvey(){
 		this.model = surveyService.getSurveyWithChildren(sid);
-		Set<Page> pages = model.getPages();
-		for (Page page : pages) {
-			System.out.println(page.getTitle()+"----------------------------------");
-			Set<Question> questions = page.getQuestions();
-			for (Question question : questions) {
-				System.out.println(question.getTitle()+"============================");
-			}
-		}
 		return "designSurveyPage";
 	}
 	

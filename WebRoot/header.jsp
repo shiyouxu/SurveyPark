@@ -9,7 +9,7 @@
 		<s:a href="LoginAction_toLoginPage" namespace="/">[首页]</s:a>&nbsp;
 		<s:a href="SurveyAction_newSurvey" namespace="/">[新建调查]</s:a>&nbsp;
 		<s:a href="SurveyAction_mySurveys" namespace="/">[我的调查]</s:a>&nbsp;
-		<s:a action="EngageSurveyAction_findAllAvailableSurveys" namespace="/">[参与调查]</s:a>&nbsp;
+		<s:a href="EngageSurveyAction_findAllAvailableSurveys" namespace="/">[参与调查]</s:a>&nbsp;
 		<s:a href="RegAction_toRegPage" namespace="/">[用户注册]</s:a>&nbsp;
 		<s:a action="UserAuthorizeAction_findAllUsers" namespace="/">[用户授权管理]</s:a>&nbsp;
 		<s:a action="RoleAction_findAllRoles" namespace="/">[角色管理]</s:a>&nbsp;
