@@ -31,7 +31,7 @@ public class TestSurveyService {
 	@Test
 	public void newSurvey(){
 		User u = new User();
-		u.setId(3);
+		u.setId(1);
 		ss.newSurvey(u);
 	}
 	
@@ -39,7 +39,7 @@ public class TestSurveyService {
 	public void TestmySurveys(){
 		//User user = (User) sessionMap.get("user");
 		User user = new User();
-		user.setId(4);
+		user.setId(1);
 		List<Survey> mySurveys = new ArrayList<Survey>();
 		mySurveys = ss.findMySurveys(user);
 		for (Survey survey : mySurveys) {
@@ -51,6 +51,13 @@ public class TestSurveyService {
 	@Test
 	public void toggleStatus(){
 		
+	}
+	
+	
+	//²éÑ¯µ÷²é
+	@Test
+	public void getSurvey(){
+		Survey s = ss.getSurvey(1);
 	}
 	
 }

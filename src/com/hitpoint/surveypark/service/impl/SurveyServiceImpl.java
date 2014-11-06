@@ -256,6 +256,18 @@ public class SurveyServiceImpl implements SurveyService {
 		String hql = "from Survey s where s.closed = ?";
 		return surveyDao.findEntityByHQL(hql, false);
 	}
+	
+	/**
+	 * 获得调查首页
+	 */
+	public Page getFirstPage(Integer sid) {
+		String hql = "from Page p where p.survey.id = ? order by p.orderno asc";
+		List<Page> list = pageDao.findEntityByHQL(hql, sid);
+		Page p = list.get(0);
+		p.getQuestions().size();//初始化问题集合
+		p.getSurvey().getTitle();//初始化调查对象
+		return p;
+	}
 }
 
 

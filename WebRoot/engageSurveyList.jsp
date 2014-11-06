@@ -31,12 +31,13 @@
   				<s:set var="idx" value="#i + #j"/>
   				<td width='<s:property value="100/#cells"/>%'>
   					<s:if test="#idx < surveys.size">
-  						<s:a action="EngageSurveyAction_entry?sid=%{surveys[#idx].id}" cssClass="aList"/>
+  						<s:a action="EngageSurveyAction_entry?sid=%{surveys[#idx].id}" cssClass="aList">
   						<img src='<s:property value="getImageUrl(surveys[#idx].logoPhotoPath)"/>'
   							alt='<s:property value="surveys{#idx}.title"/>'
   							height="80px" width="80px">
   						<br>
   						<s:property value="#idx + 1"/>.<s:property value="surveys[#idx].title"/>
+  						</s:a>
   					</s:if>
   				</td>
   				</s:iterator>

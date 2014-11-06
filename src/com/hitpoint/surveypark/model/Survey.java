@@ -13,6 +13,21 @@ public class Survey implements Serializable{
 	private String nextText = "下一步";
 	private String exitText = "退出";
 	private String doneText = "完成";
+	
+	private float minOrderno;
+	private float maxOrderno;
+	public float getMinOrderno() {
+		return minOrderno;
+	}
+	public void setMinOrderno(float minOrderno) {
+		this.minOrderno = minOrderno;
+	}
+	public float getMaxOrderno() {
+		return maxOrderno;
+	}
+	public void setMaxOrderno(float maxOrderno) {
+		this.maxOrderno = maxOrderno;
+	}
 	private Date createTime = new Date();
 	//是否关闭调查
 	private boolean closed;

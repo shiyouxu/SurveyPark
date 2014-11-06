@@ -121,4 +121,9 @@ public interface SurveyService {
 	 */
 	public List<Survey> findAllAvailableSurveys();
 
+	/**
+	 * 查询调查首页
+	 */
+	public Page getFirstPage(Integer sid);
+
 }
