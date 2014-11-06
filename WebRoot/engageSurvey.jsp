@@ -32,7 +32,7 @@
 					<!-- 遍历问题集合 -->  				
   					<s:iterator var="q" value="currPage.questions">
   						<!-- 设置变量，对问题的id进行保持 -->
-  						<s:set var="qId" value="q.id"/>
+  						<s:set var="qId" value="#q.id"/>
   						<!-- 设置变量，对问题的题型进行保持 -->
   						<s:set var="qt" value="#q.questionType"/>
   						<tr>

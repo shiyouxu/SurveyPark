@@ -265,6 +265,9 @@ public class SurveyServiceImpl implements SurveyService {
 		List<Page> list = pageDao.findEntityByHQL(hql, sid);
 		Page p = list.get(0);
 		p.getQuestions().size();//初始化问题集合
+		for (Question q : p.getQuestions()) {
+			System.out.println(q.getTitle()+"-----------------");
+		}
 		p.getSurvey().getTitle();//初始化调查对象
 		return p;
 	}
