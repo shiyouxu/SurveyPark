@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.service.SurveyService;
+import com.hitpoint.surveypark.util.StringUtil;
 import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Controller
@@ -189,12 +190,33 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 		}
 		return null;
 	}
+	
+	/**
+	 * 设置标记，用于答案的回显
+	 */
+	public String setTag(String name,String value,String selectTag){
+		Map<String,String[]> map = getAllParamsMap().get(currPage.getId());
+		String[] values = map.get(name);
+		if(StringUtil.contains(values,value)){
+			return selectTag;
+		}
+		return "";
+	}
+	
+	/**
+	 * 设置标记，用于答案回显，设置文本框回显
+	 */
+	public String setText(String name){
+		Map<String,String[]> map = getAllParamsMap().get(currPage.getId());
+		String[] values = map.get(name);
+		return "value='"+values[0]+"'";
+		
+	}
 
 	public void setServletContext(ServletContext arg0) {
 		this.sc = arg0;
 	}
 	
-
 	/**
 	 * 注入sessionMap
 	 */
