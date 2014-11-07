@@ -271,6 +271,20 @@ public class SurveyServiceImpl implements SurveyService {
 		p.getSurvey().getTitle();//初始化调查对象
 		return p;
 	}
+
+	public Page getPrePage(Integer currPid) {
+		Page p = this.getPage(currPid);
+		p =  this.getPrePage(p);
+		p.getQuestions().size();
+		return p;
+	}
+
+	public Page getNextPage(Integer currPid) {
+		Page p = this.getPage(currPid);
+		p = this.getNextPage(p);
+		p.getQuestions().size();
+		return p;
+	}
 }
 
 

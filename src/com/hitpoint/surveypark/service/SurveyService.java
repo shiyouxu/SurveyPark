@@ -125,5 +125,15 @@ public interface SurveyService {
 	 * 查询调查首页
 	 */
 	public Page getFirstPage(Integer sid);
+	
+	/**
+	 * 获得上一页
+	 */
+	public Page getPrePage(Integer currPid);
+	
+	/**
+	 * 获得下一页
+	 */
+	public Page getNextPage(Integer currPid);
 
 }
