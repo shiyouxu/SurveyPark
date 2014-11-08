@@ -8,7 +8,7 @@
   </head>
   <body>
 	<s:include value="/header.jsp"/>    
-    <s:form action="EngaguSurveyAction_doEngageSurvey" method="post">
+    <s:form action="EngageSurveyAction_doEngageSurvey"  method="post">
 	<s:hidden name="currPid" value="%{currPage.id}"/>
   	<table>
   		<tr>
@@ -58,7 +58,7 @@
 	  										value="other"
 	  										<s:property value="setTag('q'+#qId,#st.index,'checked')"/>
 	  								>其他
-	  								<s:if test="#q.otherType == 1">
+	  								<s:if test="#q.otherStyle == 1">
 	  									<input type="text"
 	  											class="text"
 	  											name='q<s:property value="#qId"/>other'

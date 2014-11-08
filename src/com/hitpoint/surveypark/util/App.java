@@ -17,7 +17,7 @@ public class App {
 	 * @throws ClassNotFoundException 
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		Survey s1 = new Survey();
+		/*Survey s1 = new Survey();
 		s1.setTitle("s1");
 		
 		Page p1 = new Page();
@@ -47,8 +47,10 @@ public class App {
 		ois.close();
 		bais.close();
 		
-		System.out.println(copy);
+		System.out.println(copy);*/
 		
+		String key = "p12_1_2";
+		System.out.println(Integer.parseInt(key.substring(1,key.indexOf("_"))));
 		
 	}
 

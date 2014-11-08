@@ -2,6 +2,7 @@ package com.hitpoint.surveypark.service;
 
 import java.util.List;
 
+import com.hitpoint.surveypark.model.Answer;
 import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Question;
 import com.hitpoint.surveypark.model.Survey;
@@ -135,5 +136,10 @@ public interface SurveyService {
 	 * 获得下一页
 	 */
 	public Page getNextPage(Integer currPid);
+	
+	/**
+	 * 批量保存答案 
+	 */
+	public void saveAnswers(List<Answer> processAnswers);
 
 }

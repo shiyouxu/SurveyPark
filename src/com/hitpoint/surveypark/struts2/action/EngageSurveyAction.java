@@ -1,9 +1,11 @@
 package com.hitpoint.surveypark.struts2.action;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -14,6 +16,7 @@ import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hitpoint.surveypark.model.Answer;
 import com.hitpoint.surveypark.model.Page;
 import com.hitpoint.surveypark.model.Survey;
 import com.hitpoint.surveypark.service.SurveyService;
@@ -49,6 +52,8 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 	//接收所有参数的map
 	private Map<String, String[]> paramsMap;
 	
+	private Integer currPid;
+	
 	public Integer getCurrPid() {
 		return currPid;
 	}
@@ -57,7 +62,6 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 		this.currPid = currPid;
 	}
 
-	private Integer currPid;
 	
 	public Map<String, Object> getSessionMap() {
 		return sessionMap;
@@ -133,33 +137,118 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 	 */
 	public String doEngageSurvey(){
 		String submitName = getSubmitName();
+		System.out.println(submitName);
 		//上一步
-		if(submitName.startsWith("pre")){
+		if(submitName.endsWith("pre")){
 			mergeParamsIntoSession();
 			this.currPage = surveyService.getPrePage(currPid);
 			return "engageSurveyPage";
 		}
 		//下一步
-		else if(submitName.startsWith("next")){
+		else if(submitName.endsWith("next")){
 			mergeParamsIntoSession();
 			this.currPage = surveyService.getNextPage(currPid);
 			return "engageSurveyPage";
 		}
 		//完成
-		else if(submitName.startsWith("done")){
+		else if(submitName.endsWith("done")){
 			mergeParamsIntoSession();
-			//TODO 答案 入库
+			//答案 入库
+			surveyService.saveAnswers(processAnswers());
+			processAnswers();
 			clearSessionData();
 			return "engageSurveyAction";
 		}
 		//退出
-		else if(submitName.startsWith("exit")){
+		else if(submitName.endsWith("exit")){
 			clearSessionData();
 			return "engageSruveyAction";
 		}
 		return null;
 	}
 	
+	/**
+	 * 处理答案
+	 */
+	private List<Answer> processAnswers() {
+		//矩阵式单选按钮
+		Map<Integer,String> matrixRadioMap = new HashMap<Integer, String>();
+		//所有答案的集合s
+		List<Answer> answers = new ArrayList<Answer>();
+		Answer a = null;
+		String key = null;
+		String[] value = null;
+		Map<Integer,Map<String,String[]>> allMap = getAllParamsMap();
+		for(Map<String,String[]> map :allMap.values()){
+			for(Entry<String,String[]> entry:map.entrySet()){
+				key = entry.getKey();
+				value = entry.getValue();
+				//处理所有q开头的参数
+				if(key.startsWith("q")){
+					//常规参数
+					if(!key.contains("other") || !key.contains("_")){
+						a = new Answer();
+						a.setAnswerIds(StringUtil.arr2Str(value));
+						a.setQuestionid(getQid(key));
+						a.setSurveyid(getCurrentSurvey().getId());
+						a.setOtherAnswer(StringUtil.arr2Str(map.get(key+"other")));//otherAnswer
+						answers.add(a);
+					}
+					else if(key.contains("_")){
+						Integer radioQid = getMatrixRadioQid(key);
+						String oldValue = matrixRadioMap.get(radioQid);
+						if(oldValue == null){
+							matrixRadioMap.put(radioQid, StringUtil.arr2Str(value));
+						}else{
+							matrixRadioMap.put(radioQid, oldValue+","+StringUtil.arr2Str(value));
+						}
+					}
+				}
+			}
+		}
+		//单独处理矩阵式单选按钮
+		processMatrixRadioMap(matrixRadioMap,answers);
+		
+		return answers;
+	}
+
+	private void processMatrixRadioMap(Map<Integer, String> matrixRadioMap,
+			List<Answer> answers) {
+		Answer a = null;
+		Integer key = null;
+		String value = null;
+		for(Entry<Integer,String> entry : matrixRadioMap.entrySet()){
+			key = entry.getKey();
+			value = entry.getValue();
+			a = new Answer();
+			a.setAnswerIds(value);
+			a.setQuestionid(key);
+			a.setSurveyid(getCurrentSurvey().getId());
+			answers.add(a);
+		}
+	}
+
+	/**
+	 * 获取矩阵式问题id(q8_0_1-->8)
+	 */
+	private Integer getMatrixRadioQid(String key) {
+		return Integer.parseInt(key.substring(1,key.indexOf("_")));
+	}
+
+	/**
+	 * 获取当前调查对象
+	 */
+	private Survey getCurrentSurvey() {
+		return (Survey) sessionMap.get(CURRENT_SURVEY);
+	}
+
+	/**
+	 * 提取问题qid(q1-->1)
+	 */
+	private Integer getQid(String key) {
+		return Integer.parseInt(key.substring(1));
+	}
+
 	//清楚session中的数据
 	private void clearSessionData() {
 		sessionMap.remove(CURRENT_SURVEY);
@@ -229,6 +318,9 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 	 */
 	public void setParameters(Map<String, String[]> parameters) {
 		this.paramsMap = parameters;
+		for (String s : paramsMap.keySet()) {
+			System.out.println(s);
+		}
 	}
 
 }
