@@ -206,10 +206,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		return "designSurveyAction";
 	}
 	
-	//注入ServletContext对象
-	public void setServletContext(ServletContext arg0) {
-		this.sc = arg0;
-	}
 	
 	/**
 	 * logo图片是否存在
@@ -223,5 +219,18 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * 分析调查
+	 */
+	public String analyzeSurvey(){
+		this.model = surveyService.getSurveyWithChildren(sid);
+		return "analyzeSurveyListPage";
+	}
+	
+	//注入ServletContext对象
+	public void setServletContext(ServletContext arg0) {
+		this.sc = arg0;
 	}
 }

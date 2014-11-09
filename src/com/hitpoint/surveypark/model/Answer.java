@@ -3,8 +3,6 @@ package com.hitpoint.surveypark.model;
 import java.util.Date;
 /**
  * Answer µÃÂ¿‡
- * @author leo.zhang
- *
  */
 public class Answer {
 	private Integer id;
