@@ -186,7 +186,7 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 				//处理所有q开头的参数
 				if(key.startsWith("q")){
 					//常规参数
-					if(!key.contains("other") || !key.contains("_")){
+					if( !key.contains("other") && !key.contains("_")){
 						a = new Answer();
 						a.setAnswerIds(StringUtil.arr2Str(value));
 						a.setQuestionid(getQid(key));
@@ -227,6 +227,13 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 			answers.add(a);
 		}
 	}
+	
+	/**
+	 * 提取问题qid(q1-->1)
+	 */
+	private Integer getQid(String key) {
+		return Integer.parseInt(key.substring(1));
+	}
 
 	/**
 	 * 获取矩阵式问题id(q8_0_1-->8)
@@ -242,12 +249,6 @@ public class EngageSurveyAction extends BaseAction<Survey> implements ServletCon
 		return (Survey) sessionMap.get(CURRENT_SURVEY);
 	}
 
-	/**
-	 * 提取问题qid(q1-->1)
-	 */
-	private Integer getQid(String key) {
-		return Integer.parseInt(key.substring(1));
-	}
 
 	//清楚session中的数据
 	private void clearSessionData() {

@@ -9,7 +9,7 @@
   </head>
   <body>
     <s:include value="/header.jsp"/>
-	<s:set var="aId" value="id"/>
+	<s:set var="sId" value="id"/>
   	<table>
 		<tr>
 			<td colspan="2" class="tdWhiteLine"></td>
@@ -38,14 +38,14 @@
 				<td>
 					<table>
 						<!-- 遍历问题集合 -->				
-						<s:iterator var="q" value="#q.questions" status="qst">
-							<s:set var="qId" value="#q.id"/>
-							<s:set var="qt" value="#q.questionType"/>
+						<s:iterator var="q" value="#p.questions" status="qst">
 							<tr>
 								<!-- count：从1开始；index：从0开始 -->
 								<td class="tdqHeaderL" style="border-bottom: 1px solid white"><s:property value="#qst.count+'.'+#q.title"/></td>
 								<td class="tdQHeaderR" style="border-bottom: 1px solid white">
-									<s:form acceptcharset="ChartOutputAction" namespace="/" method="post" target="_blank">
+									<s:form action="ChartOutputAction" namespace="/" method="post" target="_blank">
+									<s:set var="qId" value="#q.id"/>
+									<s:set var="qt" value="#q.questionType"/>
 									<input type="hidden" name="qid" value='<s:property value="#qId"/>'>
 									<!-- 判断当前题型是否是矩阵式题型 -->
 									<s:if test="#qt>5">
