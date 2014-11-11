@@ -31,26 +31,21 @@ public class ChartOutputAction extends BaseAction<Page> {
 
 	private static final long serialVersionUID = 898747543302372660L;
 
-	private Integer qid;
+	private String qid;
 	
-	private int chartType;
-	
-	private InputStream is;
-	
-	public void setIs(InputStream is) throws Exception {
-		this.is = this.getIs();
-	}
-
-	@Resource
-	private StatisticsService ss;
-	
-	public Integer getPid() {
+	public String getQid() {
 		return qid;
 	}
 
-	public void setPid(Integer qid) {
+	public void setQid(String qid) {
 		this.qid = qid;
 	}
+
+	private int chartType;
+	
+	@Resource
+	private StatisticsService ss;
+	
 
 	public int getChartType() {
 		return chartType;
@@ -68,10 +63,11 @@ public class ChartOutputAction extends BaseAction<Page> {
 	 * 输出图表
 	 * @throws Exception 
 	 */
-	public InputStream getIs() throws Exception{
+	public JFreeChart getChart() throws Exception{
 		
 		//统计问题
-		QuestionStatisticsModel qsm = ss.statistics(qid);
+		System.out.println(qid+"-----------------------------------");
+		QuestionStatisticsModel qsm = ss.statistics(Integer.parseInt(qid));
 		//构造饼图数据集
 		DefaultPieDataset ds = new DefaultPieDataset();
 		for(OptionStatisticsModel osm: qsm.getOsms()){
@@ -85,9 +81,7 @@ public class ChartOutputAction extends BaseAction<Page> {
 		PiePlot plot = (PiePlot) chart.getPlot();
 		plot.setLabelFont(new Font("宋体", Font.PLAIN, 15));
 		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ChartUtilities.writeChartAsJPEG(baos, chart, 400, 300);
-		return new ByteArrayInputStream(baos.toByteArray());
+		return chart;
 		
 	}
 }

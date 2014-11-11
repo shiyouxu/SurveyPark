@@ -8,8 +8,7 @@
 	<!-- 开发模式 -->
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.custom.i18n.resources" value="SurveyAction_zh_CN"></constant>
-	<package name="surveyparkPkg" extends="struts-default" namespace="/">
-		
+	<package name="surveyparkPkg" extends="struts-default,jfreechart-default" namespace="/">
 		<interceptors>
 			<!-- 注册登录拦截器 -->
 			<interceptor name="loginInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.LoginInterveptor"/>
@@ -99,12 +98,11 @@
 			</result>
 		</action>
 		
+		<!-- 图表输出action -->
 		<action name="ChartOutputAction" class="chartOutputAction">
-			<result name="success" type="stream">
-				<param name="contentType">image/jpeg</param>
-				<!-- 调用ChartOutputAction的getIs方法 -->
-				<param name="inputName">is</param>
-				<param name="bufferSize">1024</param>
+			<result name="success" type="chart">
+				<param name="height">300</param>
+				<param name="width">400</param>
 			</result>
 		</action>
 	</package>

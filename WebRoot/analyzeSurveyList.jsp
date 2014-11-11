@@ -39,16 +39,17 @@
 					<table>
 						<!-- 遍历问题集合 -->				
 						<s:iterator var="q" value="#p.questions" status="qst">
+							<s:set var="qId" value="#q.id"/>
+							<s:set var="qt" value="#q.questionType"/>
 							<tr>
 								<!-- count：从1开始；index：从0开始 -->
-								<td class="tdqHeaderL" style="border-bottom: 1px solid white"><s:property value="#qst.count+'.'+#q.title"/></td>
+								<td class="tdqHeaderL" style="border-bottom: 1px solid white">
+								<s:property value="#qst.count+'.'+#q.title"/></td>
 								<td class="tdQHeaderR" style="border-bottom: 1px solid white">
 									<s:form action="ChartOutputAction" namespace="/" method="post" target="_blank">
-									<s:set var="qId" value="#q.id"/>
-									<s:set var="qt" value="#q.questionType"/>
-									<input type="hidden" name="qid" value='<s:property value="#qId"/>'>
+									<input type="hidden" name="qid" value="<s:property value="#qId"/>">
 									<!-- 判断当前题型是否是矩阵式题型 -->
-									<s:if test="#qt>5">
+									<s:if test="#qt > 5">
 										<!-- 提交给另一个action，改变form的提交地址 -->
 										<s:submit action="MatrixStatisticsAction" value="查看矩阵式问题统计结果" cssClass="btn"/>
 									</s:if>
