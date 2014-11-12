@@ -1,14 +1,8 @@
 package com.hitpoint.surveypark.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
-import com.hitpoint.surveypark.model.Page;
-import com.hitpoint.surveypark.model.Question;
-import com.hitpoint.surveypark.model.Survey;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -39,7 +33,7 @@ public class App {
 		oos.writeObject(p1);
 		oos.close();
 		baos.close();
-		
+		 
 		byte[] bytes = baos.toByteArray();
 		ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 		ObjectInputStream ois = new ObjectInputStream(bais);
@@ -49,8 +43,12 @@ public class App {
 		
 		System.out.println(copy);*/
 		
-		String key = "p12_1_2";
-		System.out.println(Integer.parseInt(key.substring(1,key.indexOf("_"))));
+//		String key = "p12_1_2";
+//		System.out.println(Integer.parseInt(key.substring(1,key.indexOf("_"))));
+		List<String> strs = new ArrayList<String>();
+		strs.add("preparing");
+		System.out.println(strs.get(0));
+		
 		
 	}
 

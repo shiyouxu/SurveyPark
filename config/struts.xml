@@ -105,5 +105,11 @@
 				<param name="width">400</param>
 			</result>
 		</action>
+		
+		<action name="MatrixStatisticsAction" class="matrixStatisticsAction">
+			<result name="6">/martixNormalStatistics.jsp</result>
+			<result name="7">/martixNormalStatistics.jsp</result>
+			<result name="8">/martixSelectStatistics.jsp</result>
+		</action>
 	</package>
 </struts>
