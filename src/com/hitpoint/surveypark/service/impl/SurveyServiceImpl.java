@@ -300,6 +300,16 @@ public class SurveyServiceImpl implements SurveyService {
 			answerDao.saveEntity(a);
 		}
 	}
+
+	public List<Question> getQuestions(Integer sid) {
+		String hql = "from Question q where q.page.survey.id = ?";
+		return questionDao.findEntityByHQL(hql, sid);
+	}
+
+	public List<Answer> getAnswers(Integer sid) {
+		String hql = "from Answer a where a.surveyId = ? order by a.uuid asc";
+		return answerDao.findEntityByHQL(hql, sid);
+	}
 }
 
 

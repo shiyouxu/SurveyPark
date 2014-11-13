@@ -141,5 +141,15 @@ public interface SurveyService {
 	 * 批量保存答案 
 	 */
 	public void saveAnswers(List<Answer> processAnswers);
+	
+	/**
+	 * 查询指定调查的所有问题
+	 */
+	public List<Question> getQuestions(Integer sid);
+
+	/**
+	 * 查询指定调查的所有答案
+	 */
+	public List<Answer> getAnswers(Integer sid);
 
 }
