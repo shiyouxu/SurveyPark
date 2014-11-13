@@ -11,5 +11,9 @@
  		<property name="password" column="password" type="string" length="50"/>
  		<property name="nickname" column="nickname" type="string" length="50"/>
  		<property name="regDate" column="regdate" type="date" update="false"/>
+ 		<set name="roles" table="user_role_link">
+ 			<key column="userid"/>
+ 			<many-to-many class="com.hitpoint.surveypark.model.security.Role" column="roleid"/>
+ 		</set>
  	</class>
  </hibernate-mapping>
