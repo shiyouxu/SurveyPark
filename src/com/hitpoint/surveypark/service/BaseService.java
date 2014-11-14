@@ -19,5 +19,8 @@ public interface BaseService<T> {
 	public T loadEntity(Integer id);
 	public T getEntity(Integer id);
 	public List<T> findEntityByHQL(String hql,Object...objects);
+	//单值检索，确保查询结果只有一条记录
 	public Object uniqueResult(String hql,Object...objects);
+	//查询所有实体
+	public List<T> findAllEntities();
 }

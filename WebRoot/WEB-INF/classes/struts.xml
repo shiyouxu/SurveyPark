@@ -119,5 +119,10 @@
 		 		<param name="bufferSize">1024</param>
 			</result>
 		</action>
+		
+		<action name="RightAction_*" class="rightAction" method="{1}">
+			<result name="rightListPage">/rightList.jsp</result>
+			<result name="addRightPage">/editRight.jsp</result>
+		</action>
 	</package>
 </struts>
