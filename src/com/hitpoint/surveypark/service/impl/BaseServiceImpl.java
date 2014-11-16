@@ -68,7 +68,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	}
 	
 	public List<T> findAllEntities(){
-		String hql = "from" + clazz.getSimpleName();
+		String hql = "from " + clazz.getSimpleName();
 		return this.findEntityByHQL(hql);
 	}
 

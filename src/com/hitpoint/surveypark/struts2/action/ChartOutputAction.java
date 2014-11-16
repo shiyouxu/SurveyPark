@@ -71,6 +71,7 @@ public class ChartOutputAction extends BaseAction<Page> {
 	}
 
 	public String execute(){
+		System.out.println(qid+"===============================");
 		return "success";
 	}
 	

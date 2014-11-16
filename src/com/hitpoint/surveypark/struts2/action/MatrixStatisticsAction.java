@@ -61,6 +61,7 @@ public class MatrixStatisticsAction extends BaseAction<Question> {
 
 	public String execute() throws Exception {
 		//先进行统计
+		System.out.println(qid+"----------------------------");
 		this.qsm = ss.statistics(Integer.parseInt(qid));
 		return ""+qsm.getQuestion().getQuestionType();
 	}

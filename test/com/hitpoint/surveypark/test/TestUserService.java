@@ -36,3 +36,4 @@ public class TestUserService {
 		us.saveEntity(u);
 	}
 }
+//http://localhost:8080/SurveyPark/RightAction_findAllRights.action

@@ -56,4 +56,13 @@ public class RightAction extends BaseAction<Right> {
 	public String toAddRightPage(){
 		return "addRightPage";
 	}
+	
+	public String saveOrUpdateRight(){
+		rightService.saveOrUpdateRight(model);
+		return "findAllRightAction";
+	}
+	
 }
+
+
+
