@@ -88,6 +88,15 @@ public class RightAction extends BaseAction<Right> {
 		rightService.deleteEntity(r);
 		return "findAllRightAction";
 	}
+	
+	/**
+	 * 批量更新权限
+	 * @return
+	 */
+	public String batchUpdateRights(){
+		rightService.batchUpdateRights(allRights);
+		return "findAllRightsAction";
+	}
 }
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hitpoint.surveypark.dao.BaseDao;
 import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.service.RightService;
+import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Service("rightService")
 public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightService {
@@ -59,5 +60,17 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 			this.saveOrUpdateRight(r);
 		}
 		
+	}
+	
+	/**
+	 * 批量更新权限
+	 */
+	public void batchUpdateRights(List<Right> allRights) {
+		String hql = "update Right r set r.rightName = ? where r.id = ?";
+		if(ValidateUtil.isValid(allRights)){
+			for(Right r : allRights){
+				this.batchEntityByHQL(hql, r.getRightName(),r.getId());
+			}
+		}
 	}
 }
