@@ -12,6 +12,8 @@
 		<interceptors>
 			<!-- 注册登录拦截器 -->
 			<interceptor name="loginInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.LoginInterveptor"/>
+			<!-- 捕获url拦截器 -->
+			<interceptor name="catchUrlInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.CatchUrlInterceptor"/>
 			<!-- 定义拦截器栈 -->
 			<interceptor-stack name="surveyparkStack">
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
@@ -127,6 +129,7 @@
 				<param name="namespace">/</param>
 				<param name="actionName">RightAction_findAllRights</param>
 			</result>
+			<result name="editRightPage">/editRight.jsp</result>
 		</action>
 	</package>
 </struts>

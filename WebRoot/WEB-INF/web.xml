@@ -12,7 +12,8 @@
   	<param-value>classpath:beans.xml</param-value>
   </context-param>
   
-  <!-- 上下文载入监听器，确保web服务器启动时，直接完成spring容器的初始化 -->
+  <!-- 上下文载入监听器，确保web服务器启动时，直接完成spring容器的初始化
+  		将spring容器存放在application中 -->
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

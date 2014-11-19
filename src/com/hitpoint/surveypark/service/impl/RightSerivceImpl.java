@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.hitpoint.surveypark.dao.BaseDao;
 import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.service.RightService;
-import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Service("rightService")
 public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightService {
@@ -20,33 +19,45 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 	}
 
 	public void saveOrUpdateRight(Right r) {
-		int pos = 0;
-		long code =1L;
 		if(r.getId() == null){
-			String hql = "from Right r order by r.rightPos desc,r.rightCode desc";
-			List<Right> rights = this.findEntityByHQL(hql);
-			if(!ValidateUtil.isValid(rights)){
+			int pos = 0;
+			long code =1L;
+			String hql = "select max(r.rightPos),max(r.rightCode) from Right r " +
+					"where r.rightPos = (select max(rr.rightPos) from Right rr)";
+			Object[] arr = (Object[]) this.uniqueResult(hql);
+			Integer topPos = (Integer) arr[0];
+			Long topCode = (Long) arr[1];
+			//没有权限
+			if(topPos == null){
 				pos = 0;
 				code = 1L;
-			}
-			else{
-				//得到最上面的right
-				Right top = rights.get(0);
-				int topPos = top.getRightPos();
-				long topCode = top.getRightCode();
-				//判断权限码是否达到最大值
-				if(topCode >= (1l << 60)){
-					pos = (int) (topCode + 1);
-					code = 1;
-				}
-				else{
-					pos = topPos;
+			}else{
+				//权限码是否达到最大值
+				if(topCode >= (1L << 60)){
+					pos = topPos +1 ;
+					code = 1L;
+				}else{
+					topPos = pos;
 					code = topCode << 1;
 				}
 			}
 			r.setRightPos(pos);
 			r.setRightCode(code);
 		}
-		this.saveOrUpdateRight(r);
+		this.saveOrUpdateEntity(r);
+	}
+	
+	/**
+	 * 按照url追加权限
+	 */
+	public void appendRightByURL(String url) {
+		String hql = "select count(*) from Right r where r.rightUrl = ?";
+		Long count = (Long) this.uniqueResult(hql, url);
+		if(count == 0){
+			Right r= new Right();
+			r.setRightUrl(url);
+			this.saveOrUpdateRight(r);
+		}
+		
 	}
 }

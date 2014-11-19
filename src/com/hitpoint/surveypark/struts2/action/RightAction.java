@@ -21,6 +21,15 @@ public class RightAction extends BaseAction<Right> {
 	@Resource
 	private RightService rightService ;
 	
+	private Integer rightId;
+
+	public Integer getRightId() {
+		return rightId;
+	}
+
+	public void setRightId(Integer rightId) {
+		this.rightId = rightId;
+	}
 
 	public RightService getRightService() {
 		return rightService;
@@ -62,6 +71,23 @@ public class RightAction extends BaseAction<Right> {
 		return "findAllRightAction";
 	}
 	
+	/**
+	 * 编辑权限
+	 */
+	public String editRight(){
+		this.model = rightService.getEntity(rightId);
+		return "editRightPage";
+	}
+	
+	/**
+	 * 删除权限
+	 */
+	public String deleteRight(){
+		Right r = new Right();
+		r.setId(rightId);
+		rightService.deleteEntity(r);
+		return "findAllRightAction";
+	}
 }
 
 
