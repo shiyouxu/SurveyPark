@@ -15,6 +15,7 @@ import com.hitpoint.surveypark.model.security.Role;
 import com.hitpoint.surveypark.service.RightService;
 import com.hitpoint.surveypark.service.RoleService;
 import com.hitpoint.surveypark.util.DataUtil;
+import com.hitpoint.surveypark.util.StringUtil;
 import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Service("roleService")
@@ -52,6 +53,17 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 			String hql = "from Role r where r.id not in ("+DataUtil.extractIds(roles)+")";
 			return this.findEntityByHQL(hql);
 		}
+	}
+
+	/**
+	 * 查询在指定范围中的角色集合
+	 */
+	public List<Role> findRolesInRange(Integer[] ids) {
+		if(ValidateUtil.isValid(ids)){
+			String hql = "from Role r where r.id in ("+StringUtil.arr2Str(ids)+")";
+			return this.findEntityByHQL(hql);
+		}
+		return null;
 	}
 
 }

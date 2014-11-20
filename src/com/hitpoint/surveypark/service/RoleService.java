@@ -13,8 +13,13 @@ public interface RoleService extends BaseService<Role> {
 	public void saveOrUpdateRole(Role model, Integer[] ownRightIds);
 	
 	/**
-	 * 查询用户没有的角色集合
+	 * 查询不在指定范围中的角色集合
 	 */
 	public List<Role> findRolesNotInRange(Set<Role> roles);
+	
+	/**
+	 * 查询在指定范围中的角色集合
+	 */
+	public List<Role> findRolesInRange(Integer[] ids);
 	
 }
