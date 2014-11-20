@@ -41,4 +41,15 @@ public class StringUtil {
 		}
 		return temp;
 	}
+	
+	public static String arr2Str(Integer[] value) {
+		String temp = "";
+		if(ValidateUtil.isValid(value)){
+			for(Integer s:value){
+				temp = temp + s + ",";
+			}
+			return temp.substring(0,temp.length()-1);
+		}
+		return temp;
+	}
 }

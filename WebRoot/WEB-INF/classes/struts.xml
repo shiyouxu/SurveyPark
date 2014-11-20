@@ -135,6 +135,11 @@
 		<action name="RoleAction_*" class="roleAction" method="{1}">
 			<result name="roleListPage">/roleList.jsp</result>
 			<result name="addRolePage">/editRole.jsp</result>
+			<result name="editRolePage">/editRole.jsp</result>
+			<result name="findAllRolesAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">RoleAction_findAllRoles</param>
+			</result>
 		</action>
 	</package>
 </struts>

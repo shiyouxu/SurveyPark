@@ -1,6 +1,7 @@
 package com.hitpoint.surveypark.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hitpoint.surveypark.dao.BaseDao;
 import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.service.RightService;
+import com.hitpoint.surveypark.util.StringUtil;
 import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Service("rightService")
@@ -73,4 +75,39 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 			}
 		}
 	}
+	
+	/**
+	 * 查询在指定范围内的权限
+	 */
+	public List<Right> findRightsInRange(Integer[] ownRightIds) {
+		if(ValidateUtil.isValid(ownRightIds)){
+			String hql = "from Right r where r.id in ("+StringUtil.arr2Str(ownRightIds)+")";
+			return this.findEntityByHQL(hql);
+		}
+		return null;
+	}
+
+	public List<Right> findRightsNotInRange(Set<Right> rights) {
+		if(ValidateUtil.isValid(rights)){
+			return this.findAllEntities();
+		}else{
+			String hql = "from Right r where r.id not in ("+extractRightIds(rights)+")";
+			return this.findEntityByHQL(hql);
+		}
+	}
+	
+	/**
+	 * 抽取所有的right的id，形成字符串，以","分割
+	 */
+	private String extractRightIds(Set<Right> rights) {
+		String temp = "";
+		if(ValidateUtil.isValid(rights)){
+			for(Right r: rights){
+				temp = temp + r.getId() + ",";
+			}
+			return temp.substring(0,temp.length() - 1);
+		}
+		return temp;
+	}
+
 }

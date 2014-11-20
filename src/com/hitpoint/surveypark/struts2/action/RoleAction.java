@@ -21,6 +21,28 @@ public class RoleAction extends BaseAction<Role> {
 	
 	private List<Role> allRoles = new ArrayList<Role>();
 	
+	private Integer roleId;
+	
+	
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	//角色拥有的权限id数组
+	private Integer[] ownRightIds;
+	
+	public Integer[] getOwnRightIds() {
+		return ownRightIds;
+	}
+
+	public void setOwnRightIds(Integer[] ownRightIds) {
+		this.ownRightIds = ownRightIds;
+	}
+
 	@Resource
 	private RoleService roleService;
 	
@@ -64,8 +86,26 @@ public class RoleAction extends BaseAction<Role> {
 		return "addRolePage";
 	}
 	
+	/**
+	 * 保存/更新角色
+	 */
 	public String saveOrUpdateRole(){
 		roleService.saveOrUpdateRole(model,ownRightIds);
 		return "findAllRolesAction";
 	}
+	
+	/**
+	 * 编辑角色
+	 */
+	public String editRole(){
+		this.model = roleService.getEntity(roleId);
+		this.noOwnRights = rightService.findRightsNotInRange(model.getRights());
+		return "editRolePage";
+	}
 }
+
+
+
+
+
+
