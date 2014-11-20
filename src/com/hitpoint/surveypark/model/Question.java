@@ -1,10 +1,9 @@
 package com.hitpoint.surveypark.model;
 
-import java.io.Serializable;
 
 import com.hitpoint.surveypark.util.StringUtil;
 
-public class Question implements Serializable {
+public class Question extends BaseEntity {
 	private static final long serialVersionUID = 2008237709169686867L;
 	public static final String RN = "\r\n";
 	private Integer id;

@@ -3,6 +3,7 @@ package com.hitpoint.surveypark.service.impl;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.model.security.Role;
 import com.hitpoint.surveypark.service.RightService;
 import com.hitpoint.surveypark.service.RoleService;
+import com.hitpoint.surveypark.util.DataUtil;
 import com.hitpoint.surveypark.util.ValidateUtil;
 
 @Service("roleService")
@@ -39,4 +41,17 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		}
 		this.saveOrUpdateEntity(model);
 	}
+	
+	/**
+	 * 查询用户没有的角色集合
+	 */
+	public List<Role> findRolesNotInRange(Set<Role> roles) {
+		if(!ValidateUtil.isValid(roles)){
+			return this.findAllEntities();
+		}else{
+			String hql = "from Role r where r.id not in ("+DataUtil.extractIds(roles)+")";
+			return this.findEntityByHQL(hql);
+		}
+	}
+
 }

@@ -6,8 +6,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.security.MessageDigest;
+import java.util.Set;
 
-import com.hitpoint.surveypark.model.Page;
+import com.hitpoint.surveypark.model.BaseEntity;
+import com.hitpoint.surveypark.model.security.Role;
 
 public class DataUtil {
 	public static String md5(String src){
@@ -51,5 +53,19 @@ public class DataUtil {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * 抽取实体的id,形成字符串
+	 */
+	public static String extractIds(Set<? extends BaseEntity> entities){
+		String temp = "";
+		if(ValidateUtil.isValid(entities)){
+			for(BaseEntity e: entities){
+				temp = temp + e.getId() + ",";
+			}
+			return temp.substring(0,temp.length()-1);
+		}
+		return temp;
 	}
 }

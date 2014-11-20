@@ -1,11 +1,10 @@
 package com.hitpoint.surveypark.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Survey implements Serializable{
+public class Survey extends BaseEntity{
 	private static final long serialVersionUID = -9196454747890644210L;
 	private Integer id;
 	private String title = "Î´ÃüÃû";

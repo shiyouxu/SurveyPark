@@ -4,7 +4,8 @@ import java.util.Date;
 /**
  * Answer实体类
  */
-public class Answer {
+public class Answer extends BaseEntity{
+	private static final long serialVersionUID = -2475240085204201326L;
 	private Integer id;
 	private String answerIds;//选项的索引
 	private String otherAnswer;

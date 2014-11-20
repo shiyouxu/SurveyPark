@@ -3,7 +3,10 @@ package com.hitpoint.surveypark.model.security;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Role {
+import com.hitpoint.surveypark.model.BaseEntity;
+
+public class Role extends BaseEntity {
+	private static final long serialVersionUID = -6609299564357230730L;
 	private Integer id;
 	private String roleName;
 	private String roleValue;

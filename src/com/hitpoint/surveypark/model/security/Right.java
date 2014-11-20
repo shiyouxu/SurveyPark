@@ -1,6 +1,9 @@
 package com.hitpoint.surveypark.model.security;
 
-public class Right {
+import com.hitpoint.surveypark.model.BaseEntity;
+
+public class Right extends BaseEntity {
+	private static final long serialVersionUID = -2160355304324221751L;
 	private Integer id;
 	private String rightName = "Î´ÃüÃû";
 	private String rightUrl;

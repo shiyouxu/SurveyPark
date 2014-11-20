@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hitpoint.surveypark.dao.BaseDao;
 import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.service.RightService;
+import com.hitpoint.surveypark.util.DataUtil;
 import com.hitpoint.surveypark.util.StringUtil;
 import com.hitpoint.surveypark.util.ValidateUtil;
 
@@ -91,23 +92,10 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 		if(ValidateUtil.isValid(rights)){
 			return this.findAllEntities();
 		}else{
-			String hql = "from Right r where r.id not in ("+extractRightIds(rights)+")";
+			String hql = "from Right r where r.id not in ("+DataUtil.extractIds(rights)+")";
 			return this.findEntityByHQL(hql);
 		}
 	}
 	
-	/**
-	 * 抽取所有的right的id，形成字符串，以","分割
-	 */
-	private String extractRightIds(Set<Right> rights) {
-		String temp = "";
-		if(ValidateUtil.isValid(rights)){
-			for(Right r: rights){
-				temp = temp + r.getId() + ",";
-			}
-			return temp.substring(0,temp.length() - 1);
-		}
-		return temp;
-	}
 
 }

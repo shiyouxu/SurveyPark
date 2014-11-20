@@ -1,10 +1,9 @@
 package com.hitpoint.surveypark.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Page implements Serializable{
+public class Page extends BaseEntity{
 	private static final long serialVersionUID = 9133200376896999468L;
 	private Integer id;
 	private String title = "Î´ÃüÃû";
