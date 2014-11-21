@@ -11,12 +11,12 @@
 	<package name="surveyparkPkg" extends="struts-default,jfreechart-default" namespace="/">
 		<interceptors>
 			<!-- 注册登录拦截器 -->
-			<interceptor name="loginInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.LoginInterveptor"/>
+			<interceptor name="rightFilterInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.RightFilterInterceptor"/>
 			<!-- 捕获url拦截器 -->
 			<interceptor name="catchUrlInterceptor" class="com.hitpoint.surveypark.struts2.interceptor.CatchUrlInterceptor"/>
 			<!-- 定义拦截器栈 -->
 			<interceptor-stack name="surveyparkStack">
-				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="rightFilterInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack">
 					<param name="modelDriven.refreshModelBeforeResult">true</param>
 					<!-- 文件大小 -->
@@ -35,6 +35,7 @@
 		<!-- 定义全局结果 -->
 		<global-results>
 			<result name="login">/index.jsp</result>
+			<result name="error_no_right">/index.jsp</result>
 			<result name="designSurveyAction" type="redirectAction">
 				<param name="namespace">/</param>
 				<param name="actionName">SurveyAction_designSurvey</param>

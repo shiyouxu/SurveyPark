@@ -17,7 +17,7 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	<!-- 分散配置 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
-	<context:component-scan base-package="com.hitpoint.surveypark.dao.impl,com.hitpoint.surveypark.service.impl,com.hitpoint.surveypark.struts2.action"/>
+	<context:component-scan base-package="com.hitpoint.surveypark.dao.impl,com.hitpoint.surveypark.service.impl,com.hitpoint.surveypark.listener,com.hitpoint.surveypark.struts2.action"/>
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

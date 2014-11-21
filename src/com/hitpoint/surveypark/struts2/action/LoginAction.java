@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hitpoint.surveypark.model.User;
+import com.hitpoint.surveypark.service.RightService;
 import com.hitpoint.surveypark.service.UserService;
 import com.hitpoint.surveypark.util.DataUtil;
 
@@ -23,6 +24,9 @@ public class LoginAction extends BaseAction<User> implements SessionAware {
 	
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private RightService rightService;
 	
 	/*
 	 * 到达登陆界面
@@ -39,6 +43,11 @@ public class LoginAction extends BaseAction<User> implements SessionAware {
 		if(user == null){
 			addActionError("email/password错误");
 		}else{
+			//初始化权限总和数组
+			int maxPos = rightService.getMaxRightPos();
+			user.setRightSum(new long[maxPos + 1]);
+			//在保存到session之前，计算权限总和
+			user.calculateRightSum();
 			sessionMap.put("user", user);
 		}
 	}

@@ -69,10 +69,10 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 	 * 批量更新权限
 	 */
 	public void batchUpdateRights(List<Right> allRights) {
-		String hql = "update Right r set r.rightName = ? where r.id = ?";
+		String hql = "update Right r set r.rightName = ?,r.common = ? where r.id = ?";
 		if(ValidateUtil.isValid(allRights)){
 			for(Right r : allRights){
-				this.batchEntityByHQL(hql, r.getRightName(),r.getId());
+				this.batchEntityByHQL(hql, r.getRightName(),r.isCommon(),r.getId());
 			}
 		}
 	}
@@ -95,6 +95,12 @@ public class RightSerivceImpl extends BaseServiceImpl<Right> implements RightSer
 			String hql = "from Right r where r.id not in ("+DataUtil.extractIds(rights)+")";
 			return this.findEntityByHQL(hql);
 		}
+	}
+
+	public int getMaxRightPos() {
+		String hql = "select max(r.rightPos) from Right r";
+		Integer pos = (Integer) this.uniqueResult(hql);
+		return pos == null ? 0:pos;
 	}
 	
 

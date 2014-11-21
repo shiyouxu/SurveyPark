@@ -10,6 +10,14 @@ public class Right extends BaseEntity {
 	private String rightDesc;
 	private long rightCode;//权限码 1<<n
 	private int rightPos;//权限位,相当于权限分组，从0开始
+	private boolean common;//是否是公共资源
+	
+	public boolean isCommon() {
+		return common;
+	}
+	public void setCommon(boolean common) {
+		this.common = common;
+	}
 	public Integer getId() {
 		return id;
 	}

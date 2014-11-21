@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.hitpoint.surveypark.model.security.Right;
 import com.hitpoint.surveypark.model.security.Role;
 
 public class User extends BaseEntity {
@@ -16,7 +17,23 @@ public class User extends BaseEntity {
 	private Date regDate = new Date();
 	//角色集合
 	private Set<Role> roles = new HashSet<Role>();
+	//权限总和
+	private long[] rightSum;
+	//是否是超级管理员
+	private boolean superAdmin;
 	
+	public boolean isSuperAdmin() {
+		return superAdmin;
+	}
+	public void setSuperAdmin(boolean superAdmin) {
+		this.superAdmin = superAdmin;
+	}
+	public long[] getRightSum() {
+		return rightSum;
+	}
+	public void setRightSum(long[] rightSum) {
+		this.rightSum = rightSum;
+	}
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -52,6 +69,39 @@ public class User extends BaseEntity {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	/**
+	 * 计算用户权限总和
+	 */
+	public void calculateRightSum() {
+		int pos = 0;
+		long code = 0;
+		for(Role role :roles){
+			//判断是否是超级管理员
+			if("-1".equals(role.getRoleValue())){
+				this.superAdmin = true;
+				//释放资源
+				roles = null ;
+				return ;
+			}
+			for(Right r : role.getRights()){
+				pos = r.getRightPos();
+				code = r.getRightCode();
+				rightSum[pos] = rightSum[pos] | code;
+			}
+		}
+		//释放资源
+		roles = null;
+	}
+	
+	/**
+	 * 判断用户是否具有指定权限
+	 */
+	public boolean hasRight(Right r) {
+		int pos = r.getRightPos();
+		long code = r.getRightCode();
+		return (rightSum[pos] & code ) != 0;
 	}
 	
 	
