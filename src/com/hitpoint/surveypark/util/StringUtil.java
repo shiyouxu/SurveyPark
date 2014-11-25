@@ -31,10 +31,10 @@ public class StringUtil {
 	/**
 	 * 将数组变换成字符串,使用","分割
 	 */
-	public static String arr2Str(String[] value) {
+	public static String arr2Str(Object[] value) {
 		String temp = "";
 		if(ValidateUtil.isValid(value)){
-			for(String s:value){
+			for(Object s:value){
 				temp = temp + s + ",";
 			}
 			return temp.substring(0,temp.length()-1);
