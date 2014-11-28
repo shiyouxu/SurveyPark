@@ -52,4 +52,14 @@ public class StringUtil {
 		}
 		return temp;
 	}
+	
+	/**
+	 * 获取字符串的描述信息
+	 */
+	public static String getDescString(String str){
+		if(str != null && str.trim().length() > 30){
+			return str.substring(0,30);
+		}
+		return str;
+	}
 }

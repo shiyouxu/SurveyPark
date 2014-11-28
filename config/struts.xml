@@ -8,6 +8,8 @@
 	<!-- 开发模式 -->
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.custom.i18n.resources" value="SurveyAction_zh_CN"></constant>
+	<!-- 允许访问静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
 	<package name="surveyparkPkg" extends="struts-default,jfreechart-default" namespace="/">
 		<interceptors>
 			<!-- 注册登录拦截器 -->
@@ -150,6 +152,10 @@
 				<param name="namespace">/</param>
 				<param name="actionName">UserAuthorizeAction_findAllUsers</param>
 			</result>
+		</action>
+		
+		<action name="LogAction_*" class="logAction" method="{1}">
+			<result name="logListPage">/logList.jsp</result>
 		</action>
 	</package>
 </struts>

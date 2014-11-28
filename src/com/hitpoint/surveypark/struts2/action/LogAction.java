@@ -19,13 +19,21 @@ public class LogAction extends BaseAction<Log> {
 	@Resource
 	private LogService logService;
 
-	private List<Log> allLogs;
+	private List<Log> logs;
 	
+	public List<Log> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Log> logs) {
+		this.logs = logs;
+	}
+
 	/**
 	 * 查询全部日志
 	 */
 	public String findAllLogs(){
-		this.allLogs = logService.findAllEntities();
+		this.logs = logService.findAllEntities();
 		return "logListPage";
 	}
 	
