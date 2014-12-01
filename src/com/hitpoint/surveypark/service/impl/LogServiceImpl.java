@@ -15,4 +15,9 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
 	public void setDao(BaseDao<Log> dao){
 		super.setDao(dao);
 	}
+
+	public void createLogTable(String tableName) {
+		String sql = "create table if not exists "+tableName+" like logs";
+		this.executeSQL(sql);
+	}
 }

@@ -9,7 +9,7 @@
   <!-- 通过上下文参数配置spring文件的位置 -->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
-  	<param-value>classpath:beans.xml</param-value>
+  	<param-value>classpath:beans.xml,classpath:schedules.xml</param-value>
   </context-param>
   
   <!-- 上下文载入监听器，确保web服务器启动时，直接完成spring容器的初始化

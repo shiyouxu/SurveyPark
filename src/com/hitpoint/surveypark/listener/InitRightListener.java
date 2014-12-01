@@ -36,6 +36,7 @@ public class InitRightListener implements ApplicationListener,ServletContextAwar
 			}
 			if(sc != null){
 				sc.setAttribute("all_rights_map", map);
+				System.out.println("初始化所有权限到Application中！");
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 
 import com.hitpoint.surveypark.dao.BaseDao;
@@ -54,6 +55,15 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		q.executeUpdate();
 	}
 
+	//执行原生的SQL语句
+	public void executeSQL(String sql,Object...objects){
+		SQLQuery query = sf.getCurrentSession().createSQLQuery(sql);
+		for (int i = 0; i < objects.length; i++) {
+			query.setParameter(i, objects[i]);
+		}
+		query.executeUpdate();
+	}
+	
 	public T loadEntity(Integer id) {
 		return (T) sf.getCurrentSession().load(clazz, id);
 	}
@@ -79,5 +89,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 		return q.uniqueResult();
 	}
+	
+	
 	
 }

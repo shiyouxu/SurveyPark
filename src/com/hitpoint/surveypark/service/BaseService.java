@@ -14,6 +14,8 @@ public interface BaseService<T> {
 	public void updateEntity(T t);
 	public void deleteEntity(T t);
 	public void batchEntityByHQL(String hql,Object...objects);
+	//执行原生的SQL语句
+	public void executeSQL(String sql,Object...objects);
 	
 	//读操作
 	public T loadEntity(Integer id);
